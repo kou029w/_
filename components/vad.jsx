@@ -6,11 +6,11 @@ export default class extends Component {
     audioContext: new AudioContext(),
     audioStream: null,
     left: null,
-    right: null
+    right: null,
+    activity: []
   };
 
   componentDidMount() {
-    const setState = this.setState.bind(this);
     const audioContext = this.state.audioContext;
     const leftNode = audioContext.createGain();
     const rightNode = audioContext.createGain();
@@ -26,26 +26,46 @@ export default class extends Component {
     );
 
     const start = stream => {
-      setState({ audioStream: stream });
+      this.setState({ audioStream: stream });
       audioContext.createMediaStreamSource(stream).connect(splitter);
 
       VAD.bind({})({
         source: leftNode,
-        voice_stop() {
-          setState({ left: null });
+        voice_stop: () => {
+          this.setState({
+            left: null,
+            activity: [
+              ...this.state.activity,
+              {
+                ch: "l",
+                startTime: this.state.left,
+                endTime: new Date().getTime()
+              }
+            ]
+          });
         },
-        voice_start() {
-          setState({ left: "喋り始めました" });
+        voice_start: () => {
+          this.setState({ left: new Date().getTime() });
         }
       });
 
       VAD.bind({})({
         source: rightNode,
-        voice_stop() {
-          setState({ right: null });
+        voice_stop: () => {
+          this.setState({
+            right: null,
+            activity: [
+              ...this.state.activity,
+              {
+                ch: "r",
+                startTime: this.state.right,
+                endTime: new Date().getTime()
+              }
+            ]
+          });
         },
-        voice_start() {
-          setState({ right: "喋り始めました" });
+        voice_start: () => {
+          this.setState({ right: new Date().getTime() });
         }
       });
     };
@@ -62,12 +82,19 @@ export default class extends Component {
 
   render() {
     return (
-      <dl>
-        <dt>左</dt>
-        <dd>{this.state.left}</dd>
-        <dt>右</dt>
-        <dd>{this.state.right}</dd>
-      </dl>
+      <div>
+        <dl>
+          <dt>左</dt>
+          <dd>{this.state.left && "発話中..."}</dd>
+          <dt>右</dt>
+          <dd>{this.state.right && "発話中..."}</dd>
+        </dl>
+        <ul>
+          {this.state.activity.map((l, i) => (
+            <li key={i}>{JSON.stringify(l)}</li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
