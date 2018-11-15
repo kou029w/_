@@ -1,5 +1,6 @@
 import { Component } from "react";
 import * as _VAD from "vad.js/lib/vad.js";
+import Kaburi from "./kaburi";
 
 export default class extends Component {
   state = {
@@ -25,6 +26,21 @@ export default class extends Component {
       1
     );
 
+    const putKaburi = () => {
+      if (this.state.left !== null && this.state.right !== null) {
+        this.setState({
+          activity: [
+            ...this.state.activity,
+            {
+              ch: "kaburi",
+              startTime: Math.max(this.state.left, this.state.right),
+              endTime: new Date().getTime()
+            }
+          ]
+        });
+      }
+    };
+
     const start = stream => {
       this.setState({ audioStream: stream });
       audioContext.createMediaStreamSource(stream).connect(splitter);
@@ -32,6 +48,8 @@ export default class extends Component {
       VAD.bind({})({
         source: leftNode,
         voice_stop: () => {
+          putKaburi();
+
           this.setState({
             left: null,
             activity: [
@@ -52,6 +70,8 @@ export default class extends Component {
       VAD.bind({})({
         source: rightNode,
         voice_stop: () => {
+          putKaburi();
+
           this.setState({
             right: null,
             activity: [
@@ -89,11 +109,7 @@ export default class extends Component {
           <dt>右</dt>
           <dd>{this.state.right && "発話中..."}</dd>
         </dl>
-        <ul>
-          {this.state.activity.map((l, i) => (
-            <li key={i}>{JSON.stringify(l)}</li>
-          ))}
-        </ul>
+        <Kaburi activity={this.state.activity} />
       </div>
     );
   }
