@@ -1,7 +1,6 @@
 export default ({ activity }) => {
-  const kaburiActivity = activity.filter(a => a.ch === "kaburi");
-  const count = kaburiActivity.length;
-  const time = kaburiActivity
+  const count = activity.length;
+  const time = activity
     .map(a => a.endTime - a.startTime)
     .reduce((a, c) => a + c, 0);
 

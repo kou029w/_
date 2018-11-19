@@ -9,7 +9,8 @@ export default class extends Component {
     audioStream: null,
     left: null,
     right: null,
-    activity: []
+    activity: [],
+    kaburiActivity: []
   };
 
   componentDidMount() {
@@ -30,10 +31,9 @@ export default class extends Component {
     const putKaburi = () => {
       if (this.state.left !== null && this.state.right !== null) {
         this.setState({
-          activity: [
-            ...this.state.activity,
+          kaburiActivity: [
+            ...this.state.kaburiActivity,
             {
-              ch: "kaburi",
               startTime: Math.max(this.state.left, this.state.right),
               endTime: new Date().getTime()
             }
@@ -111,7 +111,7 @@ export default class extends Component {
           <dd>{this.state.right && "発話中..."}</dd>
         </dl>
         <Percentage activity={this.state.activity} />
-        <Kaburi activity={this.state.activity} />
+        <Kaburi activity={this.state.kaburiActivity} />
       </div>
     );
   }
