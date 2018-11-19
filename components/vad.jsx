@@ -1,5 +1,6 @@
 import { Component } from "react";
 import * as _VAD from "vad.js/lib/vad.js";
+import Percentage from "./percentage";
 import Kaburi from "./kaburi";
 
 export default class extends Component {
@@ -109,6 +110,7 @@ export default class extends Component {
           <dt>右</dt>
           <dd>{this.state.right && "発話中..."}</dd>
         </dl>
+        <Percentage activity={this.state.activity} />
         <Kaburi activity={this.state.activity} />
       </div>
     );
