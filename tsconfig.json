@@ -17,6 +17,9 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
     "target": "esnext"
   }
 }
