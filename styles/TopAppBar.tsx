@@ -14,10 +14,10 @@ const TopAppBar: React.FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar color="default">
         <Toolbar>
           <Link href="/">
-            <IconButton color="inherit">
+            <IconButton>
               <Home />
             </IconButton>
           </Link>
