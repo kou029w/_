@@ -1,9 +1,18 @@
 import "./boot";
 import { ThemeProvider } from "@material-ui/styles";
-import { CssBaseline, createMuiTheme } from "@material-ui/core";
+import {
+  CssBaseline,
+  createMuiTheme,
+  Typography,
+  Link as MuiLink,
+  Grid
+} from "@material-ui/core";
 import { orange, teal } from "@material-ui/core/colors";
-import React from "react";
+import { MDXProvider } from "@mdx-js/tag";
+import React, { ReactElement } from "react";
 import Head from "next/head";
+import Link from "next/link";
+import TopAppBar from "./TopAppBar";
 
 export const theme = createMuiTheme({
   palette: {
@@ -20,6 +29,20 @@ export const theme = createMuiTheme({
   }
 });
 
+export const components = {
+  h1: (props: {}) => <Typography variant="h1" {...props} />,
+  h2: (props: {}) => <Typography variant="h2" {...props} />,
+  h3: (props: {}) => <Typography variant="h3" {...props} />,
+  h4: (props: {}) => <Typography variant="h4" {...props} />,
+  h5: (props: {}) => <Typography variant="h5" {...props} />,
+  h6: (props: {}) => <Typography variant="h6" {...props} />,
+  a: ({ href, ...props }: { href: string }) => (
+    <Link href={href}>
+      <MuiLink variant="body1" href={href} {...props} />
+    </Link>
+  )
+};
+
 const MainTheme: React.FC<{}> = ({ children }) => (
   <ThemeProvider theme={theme}>
     <Head>
@@ -34,7 +57,12 @@ const MainTheme: React.FC<{}> = ({ children }) => (
       />
     </Head>
     <CssBaseline />
-    {children}
+    <MDXProvider components={components}>
+      <Typography component="div" variant="body1">
+        <TopAppBar />
+        <Grid container>{children}</Grid>
+      </Typography>
+    </MDXProvider>
   </ThemeProvider>
 );
 export default MainTheme;

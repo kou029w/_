@@ -1,7 +1,6 @@
 import React from "react";
 import App, { Container } from "next/app";
 import MainTheme from "../styles/MainTheme";
-import TopAppBar from "../styles/TopAppBar";
 
 export default class extends App {
   render() {
@@ -9,7 +8,6 @@ export default class extends App {
     return (
       <Container>
         <MainTheme>
-          <TopAppBar />
           <Component {...pageProps} />
         </MainTheme>
       </Container>
