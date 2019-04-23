@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { orange, teal } from "@material-ui/core/colors";
 import { MDXProvider } from "@mdx-js/tag";
-import React, { ReactElement } from "react";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import TopAppBar from "./TopAppBar";
@@ -37,7 +37,7 @@ export const components = {
   h5: (props: {}) => <Typography variant="h5" {...props} />,
   h6: (props: {}) => <Typography variant="h6" {...props} />,
   a: ({ href, ...props }: { href: string }) => (
-    <Link href={href}>
+    <Link prefetch href={href}>
       <MuiLink variant="body1" href={href} {...props} />
     </Link>
   )
