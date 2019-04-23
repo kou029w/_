@@ -43,17 +43,23 @@ export const components = {
   )
 };
 
-const useStyles = makeStyles({
-  container: {
-    padding: [8, 3, 1].map(n => `${n * theme.spacing.unit}px`).join(" "),
-    [theme.breakpoints.up("sm")]: {
-      padding: [9, 4, 1].map(n => `${n * theme.spacing.unit}px`).join(" ")
+export const Container: React.FC<{}> = ({ children }) => {
+  const classes = makeStyles({
+    root: {
+      padding: [8, 3, 1].map(n => `${theme.spacing.unit * n}px`).join(" "),
+      [theme.breakpoints.up("sm")]: {
+        padding: [9, 4, 1].map(n => `${theme.spacing.unit * n}px`).join(" ")
+      }
     }
-  }
-});
+  })();
+  return (
+    <Grid className={classes.root} container>
+      {children}
+    </Grid>
+  );
+};
 
 const MainTheme: React.FC<{}> = ({ children }) => {
-  const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -71,9 +77,7 @@ const MainTheme: React.FC<{}> = ({ children }) => {
       <MDXProvider components={components}>
         <Typography component="div" variant="body1">
           <TopAppBar />
-          <Grid className={classes.container} container>
-            {children}
-          </Grid>
+          <Container>{children}</Container>
         </Typography>
       </MDXProvider>
     </ThemeProvider>
