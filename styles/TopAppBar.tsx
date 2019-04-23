@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { withRouter } from "next/router";
 import { makeStyles } from "@material-ui/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import { Home, Info } from "@material-ui/icons";
-
-export const routes = [
-  { pathname: "/", icon: <Home /> },
-  { pathname: "/about", icon: <Info /> }
-];
+import routes from "../routes";
 
 const TopAppBar: React.FC<{ router: any }> = ({ router }) => {
   const classes = makeStyles({
