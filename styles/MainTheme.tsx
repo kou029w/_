@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { orange, teal } from "@material-ui/core/colors";
 import { MDXProvider } from "@mdx-js/tag";
-import React from "react";
+import React, { ReactNode } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import TopAppBar from "./TopAppBar";
@@ -30,7 +30,14 @@ export const theme = createMuiTheme({
 });
 
 export const components = {
-  h1: (props: {}) => <Typography component="h1" variant="h3" {...props} />,
+  h1: (props: { children: ReactNode }) => (
+    <>
+      <Head>
+        <title>{props.children}</title>
+      </Head>
+      <Typography component="h1" variant="h3" {...props} />
+    </>
+  ),
   h2: (props: {}) => <Typography component="h2" variant="h4" {...props} />,
   h3: (props: {}) => <Typography component="h3" variant="h5" {...props} />,
   h4: (props: {}) => <Typography component="h4" variant="h6" {...props} />,
