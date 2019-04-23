@@ -1,29 +1,45 @@
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
+import { withRouter } from "next/router";
 import { makeStyles } from "@material-ui/styles";
-import { AppBar, Toolbar, IconButton } from "@material-ui/core";
-import { Home } from "@material-ui/icons";
+import { AppBar, Tabs, Tab } from "@material-ui/core";
+import { Home, Info } from "@material-ui/icons";
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1
-  }
-});
+export const routes = [
+  { pathname: "/", icon: <Home /> },
+  { pathname: "/about", icon: <Info /> }
+];
 
-const TopAppBar: React.FC = () => {
-  const classes = useStyles();
+const TopAppBar: React.FC<{ router: any }> = ({ router }) => {
+  const classes = makeStyles({
+    root: {
+      flexGrow: 1
+    }
+  })();
+  const [value, setValue] = useState(
+    routes.findIndex(({ pathname }) => pathname === router.pathname)
+  );
+  router.events.on("routeChangeStart", (url: string) => {
+    setValue(routes.findIndex(({ pathname }) => pathname === url));
+  });
   return (
     <div className={classes.root}>
       <AppBar color="default">
-        <Toolbar>
-          <Link href="/">
-            <IconButton>
-              <Home />
-            </IconButton>
-          </Link>
-        </Toolbar>
+        <Tabs
+          value={value}
+          onChange={(_, value) => {
+            router.push(routes[value].pathname);
+            setValue(value);
+          }}
+          variant="fullWidth"
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          {routes.map(({ icon }, i) => (
+            <Tab key={i} icon={icon} />
+          ))}
+        </Tabs>
       </AppBar>
     </div>
   );
 };
-export default TopAppBar;
+export default withRouter(TopAppBar);
