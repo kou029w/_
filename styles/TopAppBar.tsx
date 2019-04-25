@@ -14,7 +14,11 @@ const TopAppBar: React.FC<{ router: any }> = ({ router }) => {
     routes.findIndex(({ pathname }) => pathname === router.pathname)
   );
   router.events.on("routeChangeStart", (url: string) => {
-    setValue(routes.findIndex(({ pathname }) => pathname === url));
+    setValue(
+      routes.findIndex(
+        ({ pathname }) => pathname === url.replace(/(?<=.)\/$/, "")
+      )
+    );
   });
   return (
     <div className={classes.root}>
