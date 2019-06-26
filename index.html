@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <title>media-example</title>
+  <h1 id="title">Media Devices - Video Test</h1>
+  <video id="player" controls autoplay></video>
+  <div id="devices"></div>
+  <h2 id="permission">デバイスを許可する方法 (Firefox)</h2>
+  <section>
+    <h3>方法1</h3>
+    <p>
+      <a href="permissions.sqlite">事前にカメラを許可したpermissions.sqlite</a>
+      をダウンロード後、プロファイルディレクトリ以下のpermissions.sqliteファイル
+      (/home/root/.mozilla/firefox/xxxxxxxx.default/permissions.sqlite)
+      と置き換える。
+    </p>
+  </section>
+  <section>
+    <h3>方法2</h3>
+    <p>
+      あるいは、次のSQLをプロファイルディレクトリ以下のpermissions.sqliteファイル
+      (/home/root/.mozilla/firefox/xxxxxxxx.default/permissions.sqlite)
+      に対して発行する。
+    </p>
+    <pre>
+insert into moz_perms (origin, type, permission, expireType, expireTime, modificationTime)
+  values ("https://media-example.kou029w.now.sh", "camera", 1, 0, 0, 0);
+    </pre>
+  </section>
+  <script>
+    (async () => {
+      const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
+        ({ kind }) => kind === "videoinput"
+      );
+      const list = document.getElementById("devices");
+      devices.forEach(({ deviceId, label }) => {
+        const a = document.createElement("a");
+        a.href = `#${deviceId}`;
+        a.textContent = `${label} (${deviceId})`;
+        a.style.display = "block";
+        a.onclick = () => {
+          location.href = a.href;
+          location.reload();
+        };
+        list.appendChild(a);
+      });
+    })();
+    const play = async deviceId => {
+      const player = document.getElementById("player");
+      player.srcObject = await navigator.mediaDevices.getUserMedia({
+        video: { deviceId }
+      });
+    };
+    play(location.hash.slice(1));
+  </script>
+</html>
