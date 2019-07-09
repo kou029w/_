@@ -1,14 +1,11 @@
-import "./boot";
-import { ThemeProvider, makeStyles } from "@material-ui/styles";
-import {
-  CssBaseline,
-  createMuiTheme,
-  Typography,
-  Link as MuiLink,
-  Grid
-} from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
 import { orange, teal } from "@material-ui/core/colors";
-import { MDXProvider } from "@mdx-js/tag";
+import Typography from "@material-ui/core/Typography";
+import MuiLink from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import { MDXProvider } from "@mdx-js/react";
 import React, { ReactNode } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -24,7 +21,6 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    useNextVariants: true,
     fontFamily: '"Noto Sans JP", "Helvetica", "Arial", sans-serif'
   }
 });
@@ -50,44 +46,18 @@ export const components = {
   )
 };
 
-export const Container: React.FC<{}> = ({ children }) => {
-  const classes = makeStyles({
-    root: {
-      padding: [8, 3, 1].map(n => `${theme.spacing.unit * n}px`).join(" "),
-      [theme.breakpoints.up("sm")]: {
-        padding: [9, 4, 1].map(n => `${theme.spacing.unit * n}px`).join(" ")
-      }
-    }
-  })();
-  return (
-    <Grid className={classes.root} container>
-      {children}
-    </Grid>
-  );
-};
-
-const MainTheme: React.FC<{}> = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,minimum-scale=1,initial-scale=1"
-        />
-        <meta name="theme-color" content={theme.palette.primary.main} />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Noto+Sans+JP"
-        />
-      </Head>
-      <CssBaseline />
-      <MDXProvider components={components}>
-        <Typography component="div" variant="body1">
-          <TopAppBar />
-          <Container>{children}</Container>
-        </Typography>
-      </MDXProvider>
-    </ThemeProvider>
-  );
-};
+const MainTheme: React.FC = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <MDXProvider components={components}>
+      <TopAppBar />
+      <Box paddingTop={6}>
+        <Container>
+          <Typography component="div" variant="body1">
+            {children}
+          </Typography>
+        </Container>
+      </Box>
+    </MDXProvider>
+  </ThemeProvider>
+);
 export default MainTheme;
