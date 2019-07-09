@@ -1,0 +1,9 @@
+import { useRouter } from "next/router";
+export const Query = () => {
+  const { query } = useRouter();
+  return <pre>{JSON.stringify(query, null, "  ")}</pre>;
+};
+
+# Query
+
+<Query />
