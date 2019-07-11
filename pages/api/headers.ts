@@ -1,3 +1,4 @@
-import { Handler } from "express";
-export const handler: Handler = (req, res) => res.json(req.headers);
+import { NextApiRequest, NextApiResponse } from "next";
+export const handler = (req: NextApiRequest, res: NextApiResponse) =>
+  res.json(req.headers);
 export default handler;
