@@ -1,13 +1,17 @@
 const video = document.body.querySelector("video");
+const button = document.body.querySelector(
+  'input[type="button"][value="Capture"]'
+);
 
-let canvas = document.createElement("canvas");
 async function main() {
   const stream = await navigator.mediaDevices.getUserMedia({ video: true });
   video.srcObject = stream;
+
+  button.addEventListener("click", capture);
 }
 
 function capture() {
-  if (canvas == null) return;
+  const canvas = document.createElement("canvas");
   canvas.setAttribute("width", video.videoWidth);
   canvas.setAttribute("height", video.videoHeight);
 
