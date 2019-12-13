@@ -21,7 +21,7 @@ export const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: '"Noto Sans JP", "Helvetica", "Arial", sans-serif'
+    fontFamily: "sans-serif"
   }
 });
 

@@ -28,15 +28,8 @@ export default class extends Document {
     return (
       <Html lang="ja" dir="ltr">
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width,minimum-scale=1,initial-scale=1"
-          />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap"
-          />
         </Head>
         <body>
           <Main />
