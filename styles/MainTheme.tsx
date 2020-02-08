@@ -11,6 +11,15 @@ import Head from "next/head";
 import Link from "next/link";
 import TopAppBar from "./TopAppBar";
 
+const isValidURL = (url: string) => {
+  try {
+    new URL(url);
+  } catch {
+    return false;
+  }
+  return true;
+};
+
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -39,11 +48,17 @@ export const components = {
   h4: (props: {}) => <Typography component="h4" variant="h6" {...props} />,
   h5: (props: {}) => <Typography component="h5" variant="h6" {...props} />,
   h6: (props: {}) => <Typography variant="h6" {...props} />,
-  a: ({ href, ...props }: { href: string }) => (
-    <Link prefetch href={href}>
-      <MuiLink variant="body1" color="secondary" href={href} {...props} />
-    </Link>
-  )
+  a: ({ href, ...props }: { href: string }) => {
+    const url = isValidURL(href)
+      ? href
+      : `${process.env.NEXT_BASE_PATH}${href}`;
+
+    return (
+      <Link prefetch href={href} as={url}>
+        <MuiLink variant="body1" color="secondary" href={url} {...props} />
+      </Link>
+    );
+  }
 };
 
 const MainTheme: React.FC = ({ children }) => (
