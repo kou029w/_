@@ -15,7 +15,7 @@ jobs:
         with: { node-version: 12 }
       - run: yarn
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
-      - run: git add docs
+      - run: git add -f docs
       - run: git -c user.name=bot -c user.email=octocat@github.com commit -m docs
       - run: git remote add github "https://github:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
