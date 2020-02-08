@@ -21,4 +21,4 @@ jobs:
         env:
           NAME: octocat
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: git push github HEAD
+      - run: git push github HEAD:${GITHUB_REF}
