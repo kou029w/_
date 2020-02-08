@@ -49,12 +49,11 @@ export const components = {
   h5: (props: {}) => <Typography component="h5" variant="h6" {...props} />,
   h6: (props: {}) => <Typography variant="h6" {...props} />,
   a: ({ href, ...props }: { href: string }) => {
-    const url = isValidURL(href)
-      ? href
-      : `${process.env.NEXT_BASE_PATH}${href}`;
-
-    return (
-      <Link prefetch href={href} as={url}>
+    const url = `${process.env.NEXT_BASE_PATH}${href}`;
+    return isValidURL(href) ? (
+      <MuiLink variant="body1" color="secondary" href={href} {...props} />
+    ) : (
+      <Link href={href} as={url}>
         <MuiLink variant="body1" color="secondary" href={url} {...props} />
       </Link>
     );
