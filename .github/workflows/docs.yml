@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v1
         with: { node-version: 12 }
       - run: yarn
-      - run: git subtree add --prefix docs gh-pages
+      - run: git subtree add --prefix docs origin gh-pages
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
       - run: git add -f docs
       - run: git -c user.name=bot -c user.email=octocat@github.com commit -m github-pages
