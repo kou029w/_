@@ -16,9 +16,13 @@
   },
   "devDependencies": {
     "@types/node": "~12",
+    "npm-run-all": "~4",
     "typescript": "~3.7"
   },
   "scripts": {
+    "doc": "run-s build doc:export",
+    "doc:export": "next export -o docs",
+    "build": "next build",
     "dev": "next"
   }
 }
