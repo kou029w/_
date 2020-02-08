@@ -58,7 +58,8 @@ export const components = {
         <MuiLink variant="body1" color="secondary" href={url} {...props} />
       </Link>
     );
-  }
+  },
+  p: (props: {}) => <Typography component="p" variant="body1" {...props} />
 };
 
 const MainTheme: React.FC = ({ children }) => (
@@ -66,11 +67,7 @@ const MainTheme: React.FC = ({ children }) => (
     <MDXProvider components={components}>
       <TopAppBar />
       <Box paddingTop={6}>
-        <Container>
-          <Typography component="div" variant="body1">
-            {children}
-          </Typography>
-        </Container>
+        <Container>{children}</Container>
       </Box>
     </MDXProvider>
   </ThemeProvider>

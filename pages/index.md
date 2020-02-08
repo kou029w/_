@@ -1,3 +1,3 @@
 # Hello Next.js
 
-- [/about](/about)
+- [About](/about)
