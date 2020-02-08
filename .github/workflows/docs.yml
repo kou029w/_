@@ -15,8 +15,6 @@ jobs:
           path: ${{ env.YARN_CACHE_DIR }}
           key: yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: yarn-
-      - uses: actions/setup-node@v1
-        with: { node-version: 12 }
       - run: yarn
       - run: git -c user.name="$(whoami)" subtree add --prefix docs origin gh-pages
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
