@@ -1,4 +1,4 @@
-name: docs
+name: github-pages
 on:
   push:
     branches: [master]
@@ -18,7 +18,7 @@ jobs:
       - run: yarn
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
       - run: git add -f docs
-      - run: git -c user.name=bot -c user.email=octocat@github.com commit -m docs
+      - run: git -c user.name=bot -c user.email=octocat@github.com commit -m github-pages
       - run: git remote add github "https://github:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
-      - run: git subtree push --prefix docs github gh-pages
+      - run: git subtree push -f --prefix docs github gh-pages
