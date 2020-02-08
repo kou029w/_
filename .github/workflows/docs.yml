@@ -5,6 +5,8 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      EMAIL: octocat@github.com
     steps:
       - uses: actions/checkout@v1
       - run: echo "::set-env name=YARN_CACHE_DIR::$(yarn cache dir)"
@@ -16,10 +18,10 @@ jobs:
       - uses: actions/setup-node@v1
         with: { node-version: 12 }
       - run: yarn
-      - run: git subtree add --prefix docs origin gh-pages
+      - run: git -c user.name=bot subtree add --prefix docs origin gh-pages
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
       - run: git add -f docs
-      - run: git -c user.name=bot -c user.email=octocat@github.com commit -m github-pages
+      - run: git -c user.name="$(whoami)" commit -m github-pages
       - run: git remote add github "https://github:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
       - run: git subtree push --prefix docs github gh-pages
