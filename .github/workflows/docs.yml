@@ -5,6 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - run: echo "::set-env name=YARN_CACHE_DIR::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ env.YARN_CACHE_DIR }}
+          key: yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: yarn-
       - uses: actions/setup-node@v1
         with: { node-version: 12 }
       - run: yarn
