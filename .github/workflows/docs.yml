@@ -19,4 +19,4 @@ jobs:
       - run: git -c user.name=bot -c user.email=octocat@github.com commit -m docs
       - run: git remote add github "https://github:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
-      - run: git push github HEAD:${GITHUB_REF}
+      - run: git subtree push --prefix docs origin gh-pages
