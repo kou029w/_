@@ -17,9 +17,6 @@ const TopAppBar = () => {
     <AppBar color="default">
       <Tabs
         value={pathname}
-        onChange={(_, value) => {
-          router.push(value);
-        }}
         variant="fullWidth"
         indicatorColor="primary"
         textColor="primary"
