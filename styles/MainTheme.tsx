@@ -6,7 +6,7 @@ import MuiLink from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { MDXProvider } from "@mdx-js/react";
-import React, { ReactNode } from "react";
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import TopAppBar from "./TopAppBar";
@@ -34,8 +34,10 @@ export const theme = createMuiTheme({
   }
 });
 
-export const components = {
-  h1: (props: { children: ReactNode }) => (
+export const components: {
+  [key in keyof HTMLElementTagNameMap]?: React.FC<any>;
+} = {
+  h1: props => (
     <>
       <Head>
         <title>{props.children}</title>
@@ -43,11 +45,11 @@ export const components = {
       <Typography component="h1" variant="h3" {...props} />
     </>
   ),
-  h2: (props: {}) => <Typography component="h2" variant="h4" {...props} />,
-  h3: (props: {}) => <Typography component="h3" variant="h5" {...props} />,
-  h4: (props: {}) => <Typography component="h4" variant="h6" {...props} />,
-  h5: (props: {}) => <Typography component="h5" variant="h6" {...props} />,
-  h6: (props: {}) => <Typography variant="h6" {...props} />,
+  h2: props => <Typography component="h2" variant="h4" {...props} />,
+  h3: props => <Typography component="h3" variant="h5" {...props} />,
+  h4: props => <Typography component="h4" variant="h6" {...props} />,
+  h5: props => <Typography component="h5" variant="h6" {...props} />,
+  h6: props => <Typography variant="h6" {...props} />,
   a: ({ href, ...props }: { href: string }) => {
     const url = `${process.env.NEXT_BASE_PATH}${href}`;
     return isValidURL(href) ? (
@@ -58,7 +60,7 @@ export const components = {
       </Link>
     );
   },
-  p: (props: {}) => <Typography component="p" variant="body1" {...props} />
+  p: props => <Typography component="p" variant="body1" {...props} />
 };
 
 const MainTheme: React.FC = ({ children }) => (
