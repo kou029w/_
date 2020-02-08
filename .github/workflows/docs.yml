@@ -11,7 +11,7 @@ jobs:
       - run: NEXT_ASSET_PREFIX=/${GITHUB_REPOSITORY#*/} yarn doc
       - run: git add docs
       - run: git -c user.name=octocat -c user.email=octocat@github.com commit -m docs
-      - run: git remote set-url github "https://${NAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+      - run: git remote add github "https://${NAME}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         env:
           NAME: octocat
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
