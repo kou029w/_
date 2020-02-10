@@ -1,10 +1,6 @@
 {
   "extends": ["config:base"],
   "rangeStrategy": "update-lockfile",
-  "packageRules": [
-    {
-      "depTypeList": ["devDependencies"],
-      "automerge": true
-    }
-  ]
+  "automerge": true,
+  "requiredStatusChecks": null
 }
