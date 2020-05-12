@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/node": "~12",
     "npm-run-all": "~4",
-    "typescript": "~3.8.0"
+    "typescript": "~3.9.0"
   },
   "scripts": {
     "doc": "run-s build doc:export",
