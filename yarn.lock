@@ -1171,7 +1171,7 @@
     prop-types "^15.7.2"
     react-is "^16.8.0"
 
-"@mdx-js/loader@~2":
+"@mdx-js/loader@~2.0.0-next":
   version "2.0.0-next.1"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-2.0.0-next.1.tgz#ac7d97f7ab4b45ada8a7507bed72a48b54f54739"
   integrity sha512-QZeaBIb9usq4VciIiZ3Ew1ExXmMzD9db5fuWeRlruBkKHMVzW1/CgKPjhSVYrim3diWPd0dSZBTrz9thzdJzJQ==
