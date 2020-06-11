@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 export function getStaticPaths() {
-  return { paths: [{ params: { path: "test" } }], fallback: true };
+  return { paths: [{ params: { path: "test" } }], fallback: false };
 }
 
 export function getStaticProps({ params }: { params: unknown }) {
