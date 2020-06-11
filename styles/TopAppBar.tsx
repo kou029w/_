@@ -27,11 +27,12 @@ const TopAppBar = () => {
             value={pathname}
             icon={icon}
             component={React.forwardRef<HTMLAnchorElement, {}>((props, ref) => (
-              <Link
-                href={pathname}
-                as={`${process.env.NEXT_BASE_PATH}${pathname}`}
-              >
-                <a ref={ref} {...props} />
+              <Link href={pathname}>
+                <a
+                  ref={ref}
+                  href={[process.env.NEXT_PUBLIC_BASE_PATH, pathname].join("")}
+                  {...props}
+                />
               </Link>
             ))}
           />

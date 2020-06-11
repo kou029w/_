@@ -51,11 +51,11 @@ export const components: {
   h5: (props) => <Typography component="h5" variant="h6" {...props} />,
   h6: (props) => <Typography variant="h6" {...props} />,
   a: ({ href, ...props }: { href: string }) => {
-    const url = `${process.env.NEXT_BASE_PATH}${href}`;
+    const url = [process.env.NEXT_PUBLIC_BASE_PATH, href].join("");
     return isValidURL(href) ? (
       <MuiLink variant="body1" color="secondary" href={href} {...props} />
     ) : (
-      <Link href={href} as={url}>
+      <Link href={href}>
         <MuiLink variant="body1" color="secondary" href={url} {...props} />
       </Link>
     );
