@@ -17,7 +17,7 @@ type Action =
 
 const initialState: State = {
   id: 0,
-  todo: new Map()
+  todo: new Map(),
 };
 
 function reducer(state: State, action: Action) {
@@ -44,7 +44,7 @@ export default () => {
       if (body.length === 0) return;
       dispatch({
         type: "add",
-        body
+        body,
       });
     },
     [dispatch]

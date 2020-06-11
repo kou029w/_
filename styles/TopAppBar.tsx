@@ -10,7 +10,7 @@ const TopAppBar = () => {
   const router = useRouter();
   const pathname = (
     routes.find(({ pathname }) => pathname === router.pathname) || {
-      pathname: "/"
+      pathname: "/",
     }
   ).pathname;
   return (

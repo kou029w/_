@@ -8,7 +8,7 @@ export function getStaticProps({ params }: { params: unknown }) {
   return { props: params };
 }
 
-export default function({ path }: { path: string }) {
+export default function ({ path }: { path: string }) {
   const { query } = useRouter();
   return <pre>{JSON.stringify({ path, ...query }, null, "  ")}</pre>;
 }

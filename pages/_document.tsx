@@ -5,7 +5,7 @@ import Document, {
   Html,
   Head,
   Main,
-  NextScript
+  NextScript,
 } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
 import { theme } from "../styles/MainTheme";
@@ -15,12 +15,12 @@ export default class extends Document {
     const originalRenderPage = ctx.renderPage;
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props => sheets.collect(<App {...props} />)
+        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
       });
     const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,
-      styles: [initialProps.styles, sheets.getStyleElement()]
+      styles: [initialProps.styles, sheets.getStyleElement()],
     } as DocumentInitialProps;
   };
 
