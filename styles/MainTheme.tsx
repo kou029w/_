@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import MuiLink from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import { MDXProvider } from "@mdx-js/react";
+import { MDXProvider, ComponentDictionary } from "@mdx-js/react";
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -34,9 +34,7 @@ export const theme = createMuiTheme({
   },
 });
 
-export const components: {
-  [key in keyof HTMLElementTagNameMap]?: React.FC<any>;
-} = {
+export const components: ComponentDictionary = {
   h1: (props) => (
     <>
       <Head>

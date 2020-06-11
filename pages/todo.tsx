@@ -32,7 +32,7 @@ function reducer(state: State, action: Action) {
 }
 
 export default () => {
-  const components = React.useContext(MDXContext);
+  const { components } = React.useContext(MDXContext);
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const onSubmit = React.useCallback(
     (event: FormEvent) => {
@@ -50,9 +50,9 @@ export default () => {
     [dispatch]
   );
 
-  const H1 = components.h1 || "h1";
-  const Ul = components.ul || "ul";
-  const Li = components.li || "li";
+  const H1 = components?.h1 ?? "h1";
+  const Ul = components?.ul ?? "ul";
+  const Li = components?.li ?? "li";
 
   return (
     <>
