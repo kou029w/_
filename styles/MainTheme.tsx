@@ -1,3 +1,4 @@
+import React, { ReactElement } from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { orange, teal } from "@material-ui/core/colors";
@@ -6,7 +7,6 @@ import MuiLink from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { MDXProvider, ComponentDictionary } from "@mdx-js/react";
-import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import TopAppBar from "./TopAppBar";
@@ -61,12 +61,12 @@ export const components: ComponentDictionary = {
   p: (props) => <Typography component="p" variant="body1" {...props} />,
 };
 
-const MainTheme: React.FC = ({ children }) => (
+const MainTheme = (props: { children: ReactElement }) => (
   <ThemeProvider theme={theme}>
     <MDXProvider components={components}>
       <TopAppBar />
       <Box paddingTop={6}>
-        <Container>{children}</Container>
+        <Container>{props.children}</Container>
       </Box>
     </MDXProvider>
   </ThemeProvider>
