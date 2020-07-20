@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module">
+      const socket = io();
+
+      socket.on("message", message => {
+        const messages = document.body.querySelector(".messages");
+        if (messages == null) return;
+        const p = document.createElement("p");
+        messages.append(p);
+        p.textContent = message;
+      });
+
+      document.body.querySelector("form").addEventListener("submit", event => {
+        event.preventDefault();
+        socket.send(new FormData(event.target).get("message"));
+        event.target.querySelectorAll("input").forEach(input => {
+          input.value = "";
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p class="messages"></p>
+    <form>
+      <input
+        type="text"
+        name="message"
+        autofocus
+        autocomplete="off"
+        size="40"
+      />
+    </form>
+    <p class="description">
+      Developer Tools のコンソール (Ctrl+Shift+J や Cmd+Opt+J) を開いて次のコードを実行する:
+      <p>
+        メッセージを送るためのコードの例:
+        <pre>io().send("こんにちは")</pre>
+      </p>
+      <p>
+        メッセージを受け取るためのコードの例:
+        <pre>io().on("message", message => { document.body.textContent = message; })</pre>
+      </p>
+  </body>
+</html>
