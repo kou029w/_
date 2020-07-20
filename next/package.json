@@ -1,0 +1,28 @@
+{
+  "name": "next-example",
+  "version": "1.0.0",
+  "author": "Kohei Watanabe <kou029w@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "~4",
+    "@material-ui/icons": "~4",
+    "@material-ui/styles": "~4",
+    "@mdx-js/loader": "~2.0.0-next",
+    "@next/mdx": "~9",
+    "next": "~9",
+    "react": "~16",
+    "react-dom": "~16"
+  },
+  "devDependencies": {
+    "@types/node": "~12",
+    "npm-run-all": "~4",
+    "typescript": "~3.9.0"
+  },
+  "scripts": {
+    "doc": "run-s build doc:export",
+    "doc:export": "next export -o docs",
+    "build": "next build",
+    "dev": "next"
+  }
+}
