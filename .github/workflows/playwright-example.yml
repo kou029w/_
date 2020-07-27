@@ -22,7 +22,7 @@ jobs:
       - run: yarn
         working-directory: ./playwright
       - if: startsWith(matrix.os, 'ubuntu-')
-        run: sudo apt-get install libwpewebkit-1.0-dev libgstreamer-plugins-bad1.0-0
+        run: sudo apt-get install libwpewebkit-1.0-3 libgstreamer-plugins-bad1.0-0
       - run: node main
         working-directory: ./playwright
       - if: success() || failure()
