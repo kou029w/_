@@ -18,7 +18,7 @@ jobs:
         with:
           path: ${{ steps.yarn_cache.outputs.dir }}
           key: ${{ matrix.os }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: yarn-
+          restore-keys: ${{ matrix.os }}-
       - run: yarn
         working-directory: ./playwright
       - if: startsWith(matrix.os, 'ubuntu-')
