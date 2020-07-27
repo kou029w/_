@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [windows-latest, macos-latest, ubuntu-20.04]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           restore-keys: yarn-
       - run: yarn
         working-directory: ./playwright
-      - if: matrix.os == 'ubuntu-latest'
+      - if: startsWith(matrix.os, 'ubuntu-')
         run: sudo apt-get install libwpewebkit-1.0-dev
       - run: node main
         working-directory: ./playwright
