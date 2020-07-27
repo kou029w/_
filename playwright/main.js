@@ -7,7 +7,7 @@ async function main() {
     const page = await context.newPage();
     await page.goto("http://whatsmyuseragent.org/");
     await page.screenshot({
-      path: `screenshot/${
+      path: `screenshots/${
         process.env.PLAYWRIGHT_RUNNER || "example"
       }-${browserType}.png`,
     });
