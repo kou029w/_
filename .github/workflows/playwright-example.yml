@@ -21,7 +21,7 @@ jobs:
       - run: yarn
         working-directory: ./playwright
       - if: matrix.os == 'ubuntu-latest'
-        run: sudo apt install libgstreamer1.0-0
+        run: sudo apt-get install gstreamer1.0-plugins-base
       - run: node main
         working-directory: ./playwright
         env:
