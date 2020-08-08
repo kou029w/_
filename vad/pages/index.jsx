@@ -3,8 +3,9 @@ import dynamic from "next/dynamic";
 
 const VAD = dynamic(() => import("../components/vad"), { ssr: false });
 
-export default () => (
+const Index = () => (
   <div>
     <VAD />
   </div>
 );
+export default Index;
