@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "playwright": "^1.2.1"
+    "playwright": "1.3.0"
   }
 }
