@@ -11,7 +11,7 @@
     "socket.io": "2.3.0"
   },
   "devDependencies": {
-    "nodemon": "1.18.4"
+    "nodemon": "2.0.4"
   },
   "keywords": []
 }
