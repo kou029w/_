@@ -1,0 +1,36 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "ts-openapi",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:3000/api"
+  } ],
+  "paths" : {
+    "/hello" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/hello"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "hello" : {
+        "pattern" : "^hello$",
+        "type" : "string"
+      }
+    }
+  }
+}
