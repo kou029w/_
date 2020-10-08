@@ -1,0 +1,7 @@
+name: ubuntu-latest
+on: workflow_dispatch
+jobs:
+  main:
+    runs-on: ${{ github.workflow }}
+    steps:
+      - run: "echo '${{ github.workflow }}: hello world!'"
