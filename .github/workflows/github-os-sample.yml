@@ -1,7 +1,13 @@
 name: github-os-sample
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: runs-on
+        required: true
+        default: ubuntu-latest
 jobs:
   main:
-    runs-on: ${{ github.event.event_type }}
+    runs-on: ${{ github.event.inputs.os }}
     steps:
       - run: echo 'hello world!'
