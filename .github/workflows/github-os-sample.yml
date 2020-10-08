@@ -1,0 +1,7 @@
+name: github-os-sample
+on: workflow_dispatch
+jobs:
+  main:
+    runs-on: ${{ github.event.event_type }}
+    steps:
+      - run: echo 'hello world!'
