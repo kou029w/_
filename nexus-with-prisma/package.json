@@ -26,7 +26,7 @@
   "devDependencies": {
     "@prisma/cli": "^2.3.0",
     "prettier": "2.0.5",
-    "ts-node-dev": "^1.0.0-pre.62",
+    "ts-node-dev": "^1.0.0-pre",
     "typescript": "^4.0.2"
   }
 }
