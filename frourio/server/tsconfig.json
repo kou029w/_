@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "$/*": ["./*"]
+      "$/*": ["./*"],
+      "$prisma/*": ["./node_modules/.prisma/*"]
     },
     "rootDir": ".",
     "strict": true,
