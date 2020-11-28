@@ -1951,10 +1951,10 @@ from2@^2.1.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
 
-frourio@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/frourio/-/frourio-0.19.1.tgz#ea18437d9ce2f38d82a9a803e9ec9201007e39ce"
-  integrity sha512-VPYDY4MwNlG96fG5QnGyCi+w/hZta6sVPuOwokImiZkScUdZG/hlQ3SPRcRBjkT1c8VAk8AYpI/xRyfGgkIfHQ==
+frourio@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/frourio/-/frourio-0.21.0.tgz#94bec4baaee679ea97a9a5f60bd27bf8b7f748ae"
+  integrity sha512-R5SfP3HYEy0Ip0OQaL+TnQEbqhA+PPhnlO7GAQ70Iw9WtuHWaT/0eOz/0AtLjJIglE8L5TEN0FFkJ5IIfIcyeg==
   dependencies:
     aspida "^0.22.2"
     velona "^0.5.1"
@@ -4804,10 +4804,8 @@ watchpack@^1.7.4:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
-    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
