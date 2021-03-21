@@ -1,0 +1,44 @@
+{
+  "scripts": {
+    "pretest": ": compile and lint",
+    "test": "npm run",
+    "test:a": "npm run build:a",
+    "start": "echo start",
+    "restart": "echo restart",
+    "stop": "echo stop",
+    "build": "run-s build:{a,b}",
+    "build:b": "echo 1",
+    "build:a": "echo 2",
+    "build:bx": "echo 3",
+    "build:ay": "echo 4",
+    "echo": "echo",
+    "env": "env | grep ^npm_",
+    "var": "set | grep ^npm_",
+    "var:array": "echo \"$npm_package_config_array\"",
+    "hoge": "echo hoge",
+    "#hoge": ": this command is hoge.",
+    "fuga": "echo $npm_package_config_fuga",
+    "#fuga": ": this command is fuga."
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
+  "config": {
+    "fuga": "fuga",
+    "a_b_c1": "1",
+    "a": {
+      "b_c2": "2",
+      "b": {
+        "c3": "3"
+      }
+    },
+    "null": null,
+    "array": [
+      1,
+      2,
+      "hoge"
+    ],
+    "number": 1,
+    "boolean": true
+  }
+}
