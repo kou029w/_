@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: coverallsapp/github-action@v1
+      - uses: coverallsapp/github-action@master
         with: { github-token: "${{ secrets.github_token }}" }
