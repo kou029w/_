@@ -1,0 +1,12 @@
+{
+  "name": "fluentd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "Kohei Watanabe <kou029w@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "msgpack-lite": "^0.1.26",
+    "node-fetch": "^2.6.1"
+  }
+}
