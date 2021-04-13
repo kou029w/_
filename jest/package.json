@@ -1,0 +1,14 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "Kohei Watanabe <kou029w@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
