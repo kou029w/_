@@ -19,12 +19,17 @@
       あるいは、次のSQLをプロファイルディレクトリ以下のpermissions.sqliteファイル
       に対して発行する。
     </p>
-    <pre>
+    <pre class="sql">
 insert into moz_perms (origin, type, permission, expireType, expireTime, modificationTime)
-  values ("https://media-example.kou029w.now.sh", "camera", 1, 0, 0, 0);
+  values ("https://media-example.kou029w.vercel.app", "camera", 1, 0, 0, 0);
     </pre>
   </section>
   <script>
+    const sql = `insert into moz_perms (origin, type, permission, expireType, expireTime, modificationTime)
+  values ("${window.location.origin}", "camera", 1, 0, 0, 0);`;
+    const sqlDisplay = document.querySelector(".sql");
+    if (sqlDisplay) sqlDisplay.textContent = sql;
+
     (async () => {
       const devices = (await navigator.mediaDevices.enumerateDevices()).filter(
         ({ kind }) => kind === "videoinput"
@@ -42,10 +47,10 @@ insert into moz_perms (origin, type, permission, expireType, expireTime, modific
         list.appendChild(a);
       });
     })();
-    const play = async deviceId => {
+    const play = async (deviceId) => {
       const player = document.getElementById("player");
       player.srcObject = await navigator.mediaDevices.getUserMedia({
-        video: { deviceId }
+        video: { deviceId },
       });
     };
     play(location.hash.slice(1));
