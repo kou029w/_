@@ -10,7 +10,7 @@
     "@material-ui/styles": "~4",
     "@mdx-js/loader": "~2.0.0-next",
     "@next/mdx": "~9",
-    "next": "~9",
+    "next": "~11",
     "react": "~16",
     "react-dom": "~16"
   },
