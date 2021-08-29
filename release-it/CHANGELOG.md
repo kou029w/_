@@ -8,6 +8,7 @@
 ### Added
 
 - addUnreleased, addVersionUrl
+- create release-it action
 
 ### Fixed
 
