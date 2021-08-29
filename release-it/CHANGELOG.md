@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.0.4] - 2021-08-29
+
 ### 変更
 
 - タグ名の接頭辞に `v` を使う
@@ -40,7 +42,11 @@
 - release-it 追加
 - _TODO_
 
+[0.0.4]: https://github.com/kou029w/_/compare/null...v0.0.4
 [0.0.3]: https://github.com/kou029w/_/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/kou029w/_/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/kou029w/_/tree/0.0.1
 [unreleased]: https://github.com/kou029w/_/compare/0.0.3...HEAD
+
+
+[Unreleased]: https://github.com/kou029w/_/compare/v0.0.4...HEAD
