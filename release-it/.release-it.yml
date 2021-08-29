@@ -1,0 +1,8 @@
+disable-metrics: true
+npm:
+  publish: false
+  ignoreVersion: true
+github:
+  release: true
+plugins:
+  "@release-it/keep-a-changelog": {}

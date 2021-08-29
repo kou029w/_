@@ -1,0 +1,7 @@
+{
+  "name": "@kou029w/release-it-example-e87a467b6a64152d",
+  "devDependencies": {
+    "@release-it/keep-a-changelog": "^2.3.0",
+    "release-it": "^14.11.5"
+  }
+}
