@@ -5,61 +5,24 @@
 
 ## [Unreleased]
 
-## [0.0.6] - 2021-08-29
-
-### 修正
-
-- Prettier による自動フォーマットを避ける
-
-## [0.0.5] - 2021-08-29
-
-### 修正
-
-- `--depth 1` と package.json の使用をやめ、タグ名を使ってバージョニング
-
-## [0.0.4] - 2021-08-29
-
 ### 変更
 
-- タグ名の接頭辞に `v` を使う
+- ドキュメントの整理
 
-## [0.0.3] - 2021-08-29
-
-### 新機能
-
-- GitHub Releases 対応
-- _なにかステキな機能_
-
-## [0.0.2] - 2021-08-29
-
-### 修正
-
-- `--depth 1` に対応する目的で package.json を使う
-
-## [0.0.1] - 2021-08-29
-
-### Added
-
-- addUnreleased, addVersionUrl
-- create release-it action
-
-### Fixed
-
-- npm: false
-
-## [0.0.1] - 2021-08-29
+## [0.0.6] - 2021-08-29
 
 ### Added
 
 - release-it 追加
-- _TODO_
 
-[0.0.6]: https://github.com/kou029w/_/compare/v0.0.5...v0.0.6
-[0.0.5]: https://github.com/kou029w/_/compare/v0.0.4...v0.0.5
-[0.0.4]: https://github.com/kou029w/_/compare/0.0.3...v0.0.4
-[0.0.3]: https://github.com/kou029w/_/compare/0.0.2...0.0.3
-[0.0.2]: https://github.com/kou029w/_/compare/0.0.1...0.0.2
-[0.0.1]: https://github.com/kou029w/_/tree/0.0.1
+### 変更
+
+- GitHub Releases 対応
+- タグ名の接頭辞に `v` を使う
+- npm: false
+- addUnreleased, addVersionUrl
+- Prettier による自動フォーマットを避ける
 
 <!-- prettier-ignore -->
 [Unreleased]: https://github.com/kou029w/_/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/kou029w/_/compare/v0.0.5...v0.0.6
