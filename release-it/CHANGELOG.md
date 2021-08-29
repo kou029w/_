@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.0.6] - 2021-08-29
+
 ### 修正
 
 - Prettier による自動フォーマットを避ける
@@ -52,6 +54,7 @@
 - release-it 追加
 - _TODO_
 
+[0.0.6]: https://github.com/kou029w/_/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/kou029w/_/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/kou029w/_/compare/0.0.3...v0.0.4
 [0.0.3]: https://github.com/kou029w/_/compare/0.0.2...0.0.3
@@ -59,4 +62,4 @@
 [0.0.1]: https://github.com/kou029w/_/tree/0.0.1
 
 <!-- prettier-ignore -->
-[Unreleased]: https://github.com/kou029w/_/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/kou029w/_/compare/v0.0.6...HEAD
