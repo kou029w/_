@@ -1,4 +1,6 @@
 disable-metrics: true
+git:
+  tagName: "v${version}"
 npm:
   publish: false
 github:
