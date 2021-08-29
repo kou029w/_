@@ -3,4 +3,6 @@ npm: false
 github:
   release: true
 plugins:
-  "@release-it/keep-a-changelog": {}
+  "@release-it/keep-a-changelog":
+    addUnreleased: true
+    addVersionUrl: true

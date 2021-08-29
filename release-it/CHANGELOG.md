@@ -5,6 +5,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- addUnreleased, addVersionUrl
+
 ### Fixed
 
 - npm: false
