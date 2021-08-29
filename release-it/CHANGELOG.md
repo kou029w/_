@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.0.7] - 2021-08-29
+
 ### 変更
 
 - ドキュメントの整理
@@ -24,5 +26,6 @@
 - Prettier による自動フォーマットを避ける
 
 <!-- prettier-ignore -->
-[Unreleased]: https://github.com/kou029w/_/compare/v0.0.6...HEAD
+[Unreleased]: https://github.com/kou029w/_/compare/v0.0.7...HEAD
+[0.0.7]: https://github.com/kou029w/_/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/kou029w/_/compare/v0.0.5...v0.0.6
