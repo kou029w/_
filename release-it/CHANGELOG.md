@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.0.1] - 2021-08-29
+
 ### Added
 
 - addUnreleased, addVersionUrl
@@ -22,3 +24,7 @@
 - _TODO_
 
 ## [0.0.0]
+
+
+[Unreleased]: https://github.com/kou029w/_/compare/0.0.1...HEAD
+[0.0.1]: https://github.com/kou029w/_/compare/null...0.0.1
