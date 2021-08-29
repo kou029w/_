@@ -5,6 +5,10 @@
 
 ## [Unreleased]
 
+### 修正
+
+- `--depth 1` に対応する目的で package.json を使う
+
 ## [0.0.1] - 2021-08-29
 
 ### Added
@@ -25,6 +29,5 @@
 
 ## [0.0.0]
 
-
-[Unreleased]: https://github.com/kou029w/_/compare/0.0.1...HEAD
-[0.0.1]: https://github.com/kou029w/_/compare/null...0.0.1
+[unreleased]: https://github.com/kou029w/_/compare/0.0.1...HEAD
+[0.0.1]: https://github.com/kou029w/_/tree/0.0.1
