@@ -5,6 +5,8 @@
 
 ## [Unreleased]
 
+## [0.0.3] - 2021-08-29
+
 ### 新機能
 
 - GitHub Releases 対応
@@ -37,5 +39,9 @@
 ## [0.0.0]
 
 [unreleased]: https://github.com/kou029w/_/compare/0.0.1...HEAD
+[0.0.3]: https://github.com/kou029w/_/compare/null...0.0.3
 [0.0.2]: https://github.com/kou029w/_/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/kou029w/_/tree/0.0.1
+
+
+[Unreleased]: https://github.com/kou029w/_/compare/0.0.3...HEAD
