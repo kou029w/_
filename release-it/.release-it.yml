@@ -1,8 +1,7 @@
 disable-metrics: true
 git:
   tagName: "v${version}"
-npm:
-  publish: false
+npm: false
 github:
   release: true
 plugins:
