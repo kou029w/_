@@ -1,7 +1,5 @@
 disable-metrics: true
-npm:
-  publish: false
-  ignoreVersion: true
+npm: false
 github:
   release: true
 plugins:
