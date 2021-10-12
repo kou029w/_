@@ -1,0 +1,19 @@
+{
+  "name": "api-example",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "esbuild": "^0.13.4",
+    "fastify": "^3.22.0",
+    "fastify-autoload": "^3.9.0",
+    "fastify-cors": "^6.0.2",
+    "pino-pretty": "^7.0.1"
+  },
+  "scripts": {
+    "dev": "yarn build && node -r dotenv/config dist/main.js | pino-pretty",
+    "build": "esbuild $(find src -name '*.ts') --platform=node --outdir=dist",
+    "start": "NODE_ENV=production node dist/main.js"
+  }
+}
