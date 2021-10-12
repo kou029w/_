@@ -1,0 +1,17 @@
+{
+  "name": "vite-ssg-example",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@preact/preset-vite": "^2.1.3",
+    "@types/node": "^16.10.3",
+    "@types/react": "^17.0.28",
+    "preact": "^10.5.15",
+    "preact-render-to-string": "^5.1.19",
+    "vite": "^2.6.7",
+    "vite-plugin-ssr": "^0.3.10"
+  },
+  "scripts": {
+    "build": "vite build && vite build --ssr && vite-plugin-ssr prerender"
+  }
+}
