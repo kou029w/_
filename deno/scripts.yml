@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://deno.land/x/denon@2.4.10/schema.json
+importmap: importmap.json
+scripts:
+  start:
+    cmd: "deno run app.ts"
+    allow: [net]
