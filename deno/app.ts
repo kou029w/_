@@ -1,4 +1,4 @@
-import { Handler, ServeInit, serve } from "http/server.ts";
+import { Handler, serve, ServeInit } from "http/server.ts";
 
 const handler: Handler = () => new Response("Hello World\n");
 const options: ServeInit = { addr: "localhost:8080" };

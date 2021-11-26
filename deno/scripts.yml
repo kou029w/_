@@ -1,6 +1,12 @@
 # yaml-language-server: $schema=https://deno.land/x/denon@2.4.10/schema.json
-importmap: importmap.json
+
 scripts:
   start:
-    cmd: "deno run app.ts"
+    cmd: "deno run --import-map=importmap.json app.ts"
     allow: [net]
+  test:
+    cmd: "deno test --import-map=importmap.json"
+  lint:
+    cmd: "deno lint --config=deno.json ."
+  fmt:
+    cmd: "deno fmt --config=deno.json ."
