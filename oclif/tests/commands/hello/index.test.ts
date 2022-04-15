@@ -1,8 +1,8 @@
 import { test, expect } from "vitest";
-import run from "../../run";
+import { stdout } from "stdout-stderr";
 import Hello from "../../../src/commands/hello/index";
 
 test("hello", async () => {
-  const res = await run(() => Hello.run(["friend", "--from=oclif"]));
-  expect(res).toContain("hello friend from oclif!");
+  await Hello.run(["friend", "--from=oclif"]);
+  expect(stdout.output).toContain("hello friend from oclif!");
 });

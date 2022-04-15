@@ -1,13 +1,8 @@
-import {  test, expect } from "vitest";
-import run from "../../run";
+import { test, expect } from "vitest";
+import { stdout } from "stdout-stderr";
 import World from "../../../src/commands/hello/world";
 
 test("hello world", async () => {
-  const res = await run(() => World.run());
-  expect(res).toContain("hello world!");
-});
-
-test("hello world", async () => {
-  const res = await run(() => World.run());
-  expect(res).toContain("hello world!");
+  await World.run();
+  expect(stdout.output).toContain("hello world!");
 });
