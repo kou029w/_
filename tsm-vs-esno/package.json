@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "esno": "^0.14.1",
+    "tsm": "^2.2.1"
+  },
+  "dependencies": {
+    "typescript": "^4.6.3"
+  }
+}
