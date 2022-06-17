@@ -1,0 +1,18 @@
+services:
+  a:
+    image: alpine
+    network_mode: none
+    networks:
+      a:
+        ipv4_address: "10.10.1.10"
+    command: ping 8.8.8.8
+networks:
+  a:
+    driver: bridge
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.name: br-nic-a
+    ipam:
+      config:
+        - subnet: "10.10.1.0/24"
+          gateway: "10.10.1.1"
