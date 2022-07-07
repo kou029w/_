@@ -1,17 +1,17 @@
 import fastify, { FastifyInstance } from "fastify";
-import cors from "fastify-cors";
-import autoLoad from "fastify-autoload";
+import cors from "@fastify/cors";
+import autoLoad from "@fastify/autoload";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 type Option = {
-  port: string | number;
+  port: number;
   isDev?: boolean;
 };
 
 type Server = {
   app: FastifyInstance;
-  port: string | number;
+  port: number;
 };
 
 const __dirname: string = dirname(fileURLToPath(import.meta.url));
@@ -24,5 +24,5 @@ export function create(option: Option): Server {
 }
 
 export async function start(server: Server): Promise<string> {
-  return await server.app.listen(server.port, "::");
+  return await server.app.listen({ host: "::", port: server.port });
 }
