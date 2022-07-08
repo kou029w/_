@@ -1,6 +1,6 @@
 ## 何をしたかったか
 
-[lukeed/tsm](https://github.com/lukeed/tsm) と [antfu/esno](https://github.com/antfu/esno) の比較
+[lukeed/tsm](https://github.com/lukeed/tsm) と [esbuild-kit/esno](https://github.com/esbuild-kit/esno) と [esbuild-kit/tsx](https://github.com/esbuild-kit/tsx) の比較
 
 環境:
 
@@ -34,6 +34,14 @@ console.log(message);
 ```
 
 ```ts
+#!/usr/bin/env tsx
+// dummy
+import "typescript";
+const message: string = "hello world";
+console.log(message);
+```
+
+```ts
 // dummy
 import "typescript";
 const message: string = "hello world";
@@ -44,8 +52,10 @@ console.log(message);
 time npx --call 'bash -c "for i in {1..10}; do ./hello-world.tsm.ts > /dev/null 2>&1; done"'
 time npx --call 'bash -c "for i in {1..10}; do ./hello-world.esno.ts > /dev/null 2>&1; done"'
 time npx --call 'bash -c "for i in {1..10}; do ./hello-world.esmo.ts > /dev/null 2>&1; done"'
+time npx --call 'bash -c "for i in {1..10}; do ./hello-world.tsx.ts > /dev/null 2>&1; done"'
 time npx --call 'bash -c "for i in {1..10}; do node -r tsm hello-world.ts > /dev/null 2>&1; done"'
 time npx --call 'bash -c "for i in {1..10}; do node --loader tsm hello-world.ts > /dev/null 2>&1; done"'
+time npx --call 'bash -c "for i in {1..10}; do node --loader tsx hello-world.ts > /dev/null 2>&1; done"'
 time npx --call 'bash -c "for i in {1..10}; do node -r esbuild-register hello-world.ts > /dev/null 2>&1; done"'
 ```
 
@@ -74,6 +84,12 @@ real    0m6.468s
 user    0m6.321s
 sys     0m0.964s
 
+$ time npx --call 'bash -c "for i in {1..10}; do ./hello-world.tsx.ts > /dev/null 2>&1; done"'
+
+real    0m10.406s
+user    0m9.108s
+sys     0m2.192s
+
 $ time npx --call 'bash -c "for i in {1..10}; do node -r tsm hello-world.ts > /dev/null 2>&1; done"'
 
 real    0m3.804s
@@ -85,6 +101,12 @@ $ time npx --call 'bash -c "for i in {1..10}; do node --loader tsm hello-world.t
 real    0m4.162s
 user    0m3.971s
 sys     0m0.683s
+
+$ time npx --call 'bash -c "for i in {1..10}; do node --loader tsx hello-world.ts > /dev/null 2>&1; done"'
+
+real    0m9.209s
+user    0m8.049s
+sys     0m2.035s
 
 $ time npx --call 'bash -c "for i in {1..10}; do node -r esbuild-register hello-world.ts > /dev/null 2>&1; done"'
 

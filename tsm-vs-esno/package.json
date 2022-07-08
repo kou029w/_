@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "esno": "^0.14.1",
-    "tsm": "^2.2.1"
+    "tsm": "^2.2.1",
+    "tsx": "^3.7.1"
   },
   "dependencies": {
     "typescript": "^4.6.3"
