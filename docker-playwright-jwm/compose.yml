@@ -1,0 +1,6 @@
+services:
+  app:
+    image: kou029w/docker-playwright-jwm
+    build: "."
+    ipc: host
+    ports: ["8080:8080"]
