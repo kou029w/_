@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test:vitest": "cd vitest; vitest run",
+    "test:playwright": "cd playwright; playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.24.2",
+    "@tsconfig/node18-strictest-esm": "^1.0.0",
+    "playwright": "^1.24.2",
+    "vitest": "^0.19.1"
+  }
+}
