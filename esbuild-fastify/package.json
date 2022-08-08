@@ -4,11 +4,11 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@fastify/autoload": "^5.0.0",
-    "@fastify/cors": "^8.0.0",
+    "@fastify/autoload": "^5.2.0",
+    "@fastify/cors": "^8.1.0",
     "dotenv": "^16.0.1",
-    "esbuild": "^0.14.48",
-    "fastify": "^4.2.0",
+    "esbuild": "^0.14.53",
+    "fastify": "^4.3.0",
     "pino-pretty": "^8.1.0"
   },
   "scripts": {
