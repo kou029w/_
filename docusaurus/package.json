@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "docusaurus start",
+    "build": "docusaurus build",
+    "start": "docusaurus serve"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/types": "^2.0.1"
+  }
+}
