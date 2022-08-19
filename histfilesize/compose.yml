@@ -1,0 +1,5 @@
+services:
+  bash:
+    image: ubuntu:jammy
+    volumes:
+      - "./:/root"
