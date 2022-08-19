@@ -19,3 +19,4 @@ $ wc -l .bash_history
 - `HISTFILESIZE=$((0x7fffffff))` では .bash_history が大きいとハングすることがあった
   - このあたりが限界だろう
   - 0xffffff 行くらいまでならおそらく OK だろう
+  - ちなみに `HISTFILESIZE=-1` はどうかというと、これも .bash_history が大きいとハングした
