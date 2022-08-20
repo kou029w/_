@@ -1,13 +1,12 @@
-version: "3"
 services:
   db:
-    image: postgres:13.4
+    image: postgres:14-alpine
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
   hasura:
-    image: hasura/graphql-engine:v2.0.9.cli-migrations-v3
+    image: hasura/graphql-engine:v2.10.1.cli-migrations-v3
     depends_on: [db]
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
@@ -17,12 +16,12 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
     volumes:
-      - ./migrations:/hasura-migrations
       - ./metadata:/hasura-metadata
+      - ./migrations:/hasura-migrations
     ports:
       - "8080:8080"
   postgrest:
-    image: postgrest/postgrest:v8.0.0
+    image: postgrest/postgrest:v10.0.0
     depends_on: [db]
     environment:
       PGRST_DB_URI: postgres://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
