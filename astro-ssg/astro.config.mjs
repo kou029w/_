@@ -1,6 +1,8 @@
+import preact from "@astrojs/preact";
+
 /** @type {import("astro").AstroUserConfig} */
 const config = {
-  renderers: ["@astrojs/renderer-preact"],
+  integrations: [preact()],
 };
 
 export default config;
