@@ -1,0 +1,5 @@
+api:
+  insecure: true
+providers:
+  docker:
+    defaultRule: Host(`{{ .Name }}.localhost`)

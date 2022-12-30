@@ -1,0 +1,17 @@
+services:
+  traefik:
+    image: traefik:v2.9
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+
+  # Traefikでのサービス名は {Docker Composeでのサービス名}-{Docker Composeでのプロジェクト名} のようになる
+  # https://github.com/traefik/traefik/blob/e54ee89330a800d509da7b11b46a6ecbb331e791/pkg/provider/docker/config.go#L412-L420
+  # そうでない場合はコンテナ名
+  # --providers.docker.defaultRule: Host(`{{ .Name }}.localhost`)
+  # … {{ .Name }} はTraefikでのサービス名に置換される
+  nginx:
+    image: nginx:alpine
