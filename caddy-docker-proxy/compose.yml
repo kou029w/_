@@ -1,0 +1,16 @@
+services:
+  caddy-docker-proxy:
+    image: fogtype/caddy-docker-proxy
+    build: "."
+    ports:
+      - "8080:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+      - caddy_config:/config
+networks:
+  default:
+    name: caddy
+volumes:
+  caddy_data:
+  caddy_config:

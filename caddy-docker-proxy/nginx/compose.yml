@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:alpine
+    networks:
+      - caddy
+    labels:
+      caddy: http://nginx.localhost
+      caddy.reverse_proxy: "{{ upstreams }}"
+networks:
+  caddy:
+    external: true
