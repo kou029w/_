@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@stitches/core": "^1.2.5",
-    "vite": "^2.6.10"
+    "vite": "^2.9.13"
   },
   "scripts": {
     "dev": "vite",
