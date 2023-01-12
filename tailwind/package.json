@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "tailwindcss": "^2.2.17",
-    "vite": "^2.6.10"
+    "vite": "^2.9.13"
   },
   "scripts": {
     "dev": "vite",
