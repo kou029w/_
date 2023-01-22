@@ -1,0 +1,10 @@
+services:
+  lighttpd:
+    image: kou029w/lighttpd
+    build: "."
+    volumes:
+      - "./lighttpd:/etc/lighttpd"
+      - "./srv:/srv"
+    ports:
+      - "8080:80"
+    command: lighttpd -Df /etc/lighttpd/lighttpd.conf
