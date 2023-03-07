@@ -4,7 +4,9 @@ async function main() {
   const browser = await chromium.launch({
     headless: false,
   });
-  const context = await browser.newContext();
+  const context = await browser.newContext({
+    screen: { width: 1280, height: 720 },
+  });
   const page = await context.newPage();
   await page.goto("about:blank");
   for (let i = 0 /* NOP */; ; i++) {
