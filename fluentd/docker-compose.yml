@@ -1,8 +1,0 @@
-version: "3"
-services:
-  fluentd:
-    image: fluent/fluentd:edge
-    ports: ["24224:24224"]
-    volumes:
-      - "./log:/fluentd/log"
-      - "./fluent.conf:/fluentd/etc/fluent.conf"

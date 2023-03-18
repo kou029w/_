@@ -1,9 +1,0 @@
-{
-  "name": "bun-example",
-  "scripts": {
-    "test": "bun wiptest"
-  },
-  "dependencies": {
-    "bun-types": "^0.0.83"
-  }
-}

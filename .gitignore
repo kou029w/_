@@ -1,5 +1,3 @@
 node_modules/
 dist/
 .next/
-/ts-openapi/cypress/videos/
-/ts-openapi/cypress/screenshots/
