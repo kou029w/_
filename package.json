@@ -1,0 +1,7 @@
+{
+	"devDependencies": {
+		"fastify": "^4.22.2",
+		"fastify-http-errors-enhanced": "^4.1.0",
+		"http-errors-enhanced": "^1.0.13"
+	}
+}
