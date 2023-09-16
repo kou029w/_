@@ -1,0 +1,40 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@db.host.docker.internal
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json:ro
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - postgres_data_v16:/var/lib/postgresql/data
+      # - postgres_data_v17:/var/lib/postgresql/data
+  old_db:
+    profiles:
+      - migration
+    image: postgres:16-alpine
+    # image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - postgres_data_v16:/var/lib/postgresql/data
+volumes:
+  postgres_data_v16:
+  # postgres_data_v17:
+# docker compose down
+# editor compose.yml
+#   add new version volume
+#   replace old_db.image new → old version
+#   replace db.volumes old → new version
+# docker compose --profile=migration up -d old_db db
+# docker compose exec old_db pg_dumpall --clean -U postgres | docker compose exec -T db psql -U postgres
+# docker compose up -d
+# docker compose --profile=migration down old_db
+# editor compose.yml
+#   remove volume
