@@ -1,0 +1,18 @@
+name: update-empty-branch
+on:
+  workflow_dispatch:
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: |
+          git worktree add --track -b empty empty origin/empty
+          rm -rf empty/*
+          git config user.name bot
+          git config user.email '<>'
+          git -C empty add --all
+          git -C empty commit --allow-empty --message "based on $(git rev-parse @)"
+          git -C empty push origin empty
