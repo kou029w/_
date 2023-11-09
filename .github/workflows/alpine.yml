@@ -1,0 +1,11 @@
+name: alpine
+on:
+  workflow_dispatch:
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    container: alpine
+    steps:
+      - uses: actions/checkout@v4
+      - run: cat /.dockerenv
+      - run: ls
