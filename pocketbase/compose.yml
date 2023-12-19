@@ -1,0 +1,12 @@
+services:
+  pocketbase:
+    image: kou029w/pocketbase
+    build: "."
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./pb_migrations:/pb/pb_migrations
+      - ./pb_hooks:/pb/pb_hooks
+      - pb_data:/pb/pb_data
+volumes:
+  pb_data:
