@@ -4,13 +4,6 @@
     connection_info:
       database_url:
         from_env: HASURA_GRAPHQL_DATABASE_URL
-  tables:
-    - table:
-        schema: public
-        name: users
-      insert_permissions:
-        - role: anonymous
-          permission:
-            check: {}
-            columns:
-              - name
+      isolation_level: read-committed
+      use_prepared_statements: false
+  tables: "!include default/tables/tables.yaml"
