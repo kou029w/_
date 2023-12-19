@@ -1,0 +1,28 @@
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - nocodb_data:/usr/app/data
+    environment:
+      NC_DB: pg://db?u=postgres&p=${POSTGRES_PASSWORD:?}&d=postgres
+      NC_AUTH_JWT_SECRET: ${NC_AUTH_JWT_SECRET:?}
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@db.host.docker.internal
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:?}
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json:ro
+volumes:
+  nocodb_data:
+  postgres_data:
