@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{{- $path := .OriginalReq.URL.Path}}
+{{- if hasSuffix "/" $path}}{{$path = print $path "index"}}{{end}}
+{{- $path = print $path ".md"}}
+{{- if not (fileExists $path)}}{{httpError 404}}{{end}}
+{{- $markdown := (include $path | splitFrontMatter)}}
+{{- $title := default (trimSuffix ".md" (base $path)) $markdown.Meta.title}}
+<html lang="ja">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{{$title}}</title>
+
+{{markdown $markdown.Body | trim}}
+
+</html>

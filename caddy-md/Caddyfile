@@ -1,0 +1,5 @@
+:8080 {
+	file_server
+	templates
+	try_files {path} /
+}
