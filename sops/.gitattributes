@@ -1,0 +1,3 @@
+*.enc.env diff=sops
+*.enc.json diff=sops
+*.enc.yml diff=sops
