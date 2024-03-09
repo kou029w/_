@@ -1,8 +1,0 @@
-version: "3"
-services:
-  playwright:
-    image: mcr.microsoft.com/playwright
-    user: "${UID}:${GID}"
-    environment: [DISPLAY]
-    volumes: ["/tmp/.X11-unix:/tmp/.X11-unix"]
-    command: npx playwright wk example.com
