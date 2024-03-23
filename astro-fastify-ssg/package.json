@@ -1,0 +1,19 @@
+{
+  "name": "@kou029w/astro-fastify-ssg",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "fastify start --log-level=info --debug --watch server.js -- --dev",
+    "build": "astro build",
+    "start": "fastify start server.js"
+  },
+  "devDependencies": {
+    "@fastify/http-proxy": "^9.5.0",
+    "@fastify/static": "^7.0.1",
+    "astro": "^4.5.9",
+    "fastify": "^4.26.2",
+    "fastify-cli": "^6.1.1"
+  }
+}
