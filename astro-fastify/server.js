@@ -8,7 +8,9 @@ const app = async (fastify, opts) => {
 
   if (opts.dev) {
     const astro = await import("astro");
-    const astroDevServer = await astro.dev();
+    const astroDevServer = await astro.dev({
+      root: fileURLToPath(import.meta.resolve(".")),
+    });
     await fastify.register(await import("@fastify/http-proxy"), {
       upstream: `http://localhost:${astroDevServer.address.port}`,
     });
