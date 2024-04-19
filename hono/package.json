@@ -6,7 +6,7 @@
     "start": "tsx watch main.ts"
   },
   "dependencies": {
-    "@hono/node-server": "^1.8.2",
+    "@hono/node-server": "^1.10.1",
     "hono": "^4.0.9",
     "tsx": "^3.12.2"
   },
