@@ -1,8 +1,7 @@
-import { serve } from "@hono/node-server";
-import { Hono } from "hono";
-import { html } from "hono/html";
-import { showRoutes } from "hono/dev";
-import { Foo } from "./foo";
+import { Hono } from "npm:hono";
+import { showRoutes } from "npm:hono/dev";
+import { html } from "npm:hono/html";
+import { Foo } from "./foo.tsx";
 
 const app = new Hono();
 
@@ -24,5 +23,5 @@ app.get("/", (c) => {
 
 const port = 3000;
 
-serve({ ...app, port });
+Deno.serve({ port }, app.fetch);
 showRoutes(app);

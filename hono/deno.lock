@@ -1,0 +1,21 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:hono": "npm:hono@4.2.6",
+      "npm:hono@^4.2.6": "npm:hono@4.2.6"
+    },
+    "npm": {
+      "hono@4.2.6": {
+        "integrity": "sha512-AtbHZJYWsm+uFHLz0C6xltX7hjOV44a55gSEGBfoQOJ00KSxEUOoiIkmd+NXfapNX0j2GCKhqMmYeegBdHRwcQ==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "dependencies": [
+      "npm:hono@^4.2.6"
+    ]
+  }
+}

@@ -1,3 +1,5 @@
+/** @jsxImportSource npm:hono/jsx */
+
 export function Foo(props: { messages: string[] }) {
   return (
     <>

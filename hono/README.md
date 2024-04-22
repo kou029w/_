@@ -1,7 +1,6 @@
 ```
-npm install
-npm start
-# or npm i -g . && hello-hono
+deno run -A main.ts
+# or deno install -n hello-hono https://raw.githubusercontent.com/kou029w/_/main/hono/main.ts && hello-hono
 ```
 
 ```
