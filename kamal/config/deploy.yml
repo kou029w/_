@@ -1,10 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/kjellberg/mrsk/validate-with-json-schema/lib/mrsk/configuration/schema.yaml
-service: kamal-example
-image: caddy
+service: web
+image: fogtype/caddy
 servers:
   - ubuntu@gamma.fogtype.com
 registry:
-  server: localhost:5000
-  username: _
+  username: fogtype
   password:
     - KAMAL_REGISTRY_PASSWORD
+logging:
+  driver: journald
+healthcheck:
+  cmd: /bin/true

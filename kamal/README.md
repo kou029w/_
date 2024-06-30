@@ -7,14 +7,13 @@ KAMAL_REGISTRY_PASSWORD=*
 ```
 
 ```
-$ docker context create --docker=host=ssh://ubuntu@gamma.fogtype.com gamma
-$ docker context use gamma
-$ docker run --rm -d -p 127.0.0.1:5000:5000 --name registry registry
-$ ssh -NL 5000:localhost:5000 ubuntu@gamma.fogtype.com
-$ docker context use default
-$ kamal deploy
+$ kamal setup
 ```
 
-TODO
+```
+ubuntu@gamma:~$ mkdir -p .kamal/env/roles
+ubuntu@gamma:~$ touch .kamal/env/roles/web-web.env
+ubuntu@gamma:~$ chmod 600 .kamal/env/roles/web-web.env
+```
 
-- [ ] Docker レジストリどうするか問題
+- Docker レジストリどうするか => Docker Hub などパブリックなものを使用するのが簡単
