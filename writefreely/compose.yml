@@ -1,0 +1,12 @@
+services:
+  web:
+    image: "writeas/writefreely:latest"
+    volumes:
+      - "./config.ini:/go/config.ini"
+      - "./data:/data" # sudo chown 2:2 data
+    ports:
+      - "8080:8080"
+# セットアップに必要なコマンド:
+# $ cmd/writefreely/writefreely -init-db
+# $ cmd/writefreely/writefreely -create-admin $USERNAME:$PASSWORD
+# $ cmd/writefreely/writefreely -gen-keys
