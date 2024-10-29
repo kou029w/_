@@ -1,0 +1,13 @@
+services:
+  metube:
+    image: ghcr.io/alexta69/metube
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./config:/etc/metube
+      - ./downloads:/downloads
+    environment:
+      YTDL_OPTIONS_FILE: /etc/metube/ytdl_options.json
+      DOWNLOAD_DIR: /downloads/Music
+      OUTPUT_TEMPLATE: "%(artist,uploader|Unknown)s,%(album,artist,uploader)s,%(title)s [%(id)s].%(ext)s"

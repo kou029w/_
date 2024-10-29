@@ -1,0 +1,9 @@
+{
+  "format": "bestaudio/best",
+  "writethumbnail": true,
+  "postprocessors": [
+    { "key": "FFmpegExtractAudio" },
+    { "key": "FFmpegMetadata" },
+    { "key": "EmbedThumbnail" }
+  ]
+}
