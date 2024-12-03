@@ -1,7 +1,7 @@
 import {
-  compactDecrypt,
-  CompactEncrypt,
   exportJWK,
+  flattenedDecrypt,
+  FlattenedEncrypt,
   generateKeyPair,
   importJWK,
 } from "npm:jose";
@@ -19,7 +19,7 @@ const keyToEncrypt = await generateKeyPair("ES256", { extractable: true });
 const privateKeyJWK = await exportJWK(keyToEncrypt.privateKey);
 
 // encrypt
-const jwe = await new CompactEncrypt(
+const jwe = await new FlattenedEncrypt(
   new TextEncoder().encode(JSON.stringify(privateKeyJWK)),
 )
   .setProtectedHeader({
@@ -29,7 +29,7 @@ const jwe = await new CompactEncrypt(
   .encrypt(encryptionKey);
 
 // decrypt
-const res = await compactDecrypt(jwe, encryptionKey);
+const res = await flattenedDecrypt(jwe, encryptionKey);
 const jwk = JSON.parse(new TextDecoder().decode(res.plaintext));
 
 console.log({
