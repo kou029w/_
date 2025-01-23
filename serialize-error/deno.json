@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "serialize-error": "npm:serialize-error@^12.0.0"
+  }
+}
