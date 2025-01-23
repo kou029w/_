@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@fastify/helmet": "^11.1.1",
-    "@fastify/multipart": "^8.2.0",
+    "@fastify/multipart": "^8.3.1",
     "@fastify/sensible": "^5.5.0",
     "@fastify/under-pressure": "^8.3.0",
     "@kitajs/runtime": "^1.1.17",
