@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "cowsay": "npm:cowsay@^1.6.0"
+  }
+}

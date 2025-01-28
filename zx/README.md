@@ -3,7 +3,7 @@ echo info >&2
 ```
 
 ```js
-import { say } from "npm:cowsay";
+import { say } from "cowsay";
 
 console.log(say({ text: "hello world" }));
 ```
