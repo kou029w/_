@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "jose": "npm:jose@^5.9.6"
-  }
-}
