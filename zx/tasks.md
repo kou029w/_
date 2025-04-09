@@ -3,8 +3,7 @@
 ```
 $ deno -A npm:zx tasks.md [task]
 : or
-$ npm i -g zx
-$ zx tasks.md [task]
+$ npx zx tasks.md [task]
 ```
 
 ```js
@@ -14,7 +13,8 @@ const task = {
   cowsay,
 }[argv._[0]];
 
-await (task ?? help)();
+$.verbose = true;
+await task?.().then(process.exit);
 ```
 
 ## `build`
@@ -51,8 +51,6 @@ async function cowsay() {
 
 このテキストの表示
 
-```js
-async function help() {
-  await $`cat ${__filename} >&2`;
-}
+```sh
+cat "${__filename}"
 ```
