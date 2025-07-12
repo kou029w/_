@@ -1,0 +1,6 @@
+services:
+  voicevox:
+    image: voicevox/voicevox_engine:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:50021:50021"

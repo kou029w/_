@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "voicevox": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@kajidog/mcp-tts-voicevox"]
+    }
+  }
+}
