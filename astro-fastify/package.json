@@ -10,7 +10,7 @@
     "start": "fastify start server.js"
   },
   "devDependencies": {
-    "@astrojs/node": "^8.2.5",
+    "@astrojs/node": "^9.4.1",
     "@fastify/http-proxy": "^9.5.0",
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^7.0.1",
