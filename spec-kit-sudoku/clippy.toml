@@ -1,0 +1,6 @@
+msrv = "1.75.0"
+avoid-breaking-exported-api = true
+max-trait-bounds = 3
+max-struct-bools = 3
+max-fn-params = 7
+trivial-copy-size-limit = 64
