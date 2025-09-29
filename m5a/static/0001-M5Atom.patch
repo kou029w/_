@@ -1,0 +1,35 @@
+From 10391b72832a244cbffdf7851fc6226ab32efb79 Mon Sep 17 00:00:00 2001
+From: Kohei Watanabe <nebel@fogtype.com>
+Date: Sat, 27 Sep 2025 23:15:42 +0900
+Subject: [PATCH] =?UTF-8?q?M5Atom=E3=81=B8=E3=81=AE=E9=80=9A=E7=9F=A5?=
+ =?UTF-8?q?=E6=A9=9F=E8=83=BD=E3=82=92=E8=BF=BD=E5=8A=A0?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ main.js | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/main.js b/main.js
+index 3feb608..267f869 100644
+--- a/main.js
++++ b/main.js
+@@ -260,6 +260,14 @@ function vr_function() {
+     for (var i = event.resultIndex; i < results.length; i++) {
+       if (results[i].isFinal) {
+         last_finished = results[i][0].transcript;
++
++				// M5Atomに通知
++				fetch("/api/smile", {
++					method: "POST",
++					headers: { "Content-Type": "application/json" },
++					body: JSON.stringify({ text: transcript }),
++				}).catch((err) => console.error(err));
++
+         const is_end_of_sentence = last_finished.endsWith('。') || last_finished.endsWith('？') || last_finished.endsWith('！');
+         if (lang == 'ja-JP' && is_end_of_sentence != true) {
+           last_finished += '。';
+-- 
+2.43.0
+
