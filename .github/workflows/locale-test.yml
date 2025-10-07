@@ -1,0 +1,22 @@
+name: macOS locale test
+on:
+  workflow_dispatch:
+jobs:
+  locale-check:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Check LC_ALL=ja_JP.UTF-8 locale
+        run: |
+          echo "Expected: ja-JP"
+          output=$(LC_ALL=ja_JP.UTF-8 node -p navigator.language)
+          echo "Actual: $output"
+          if [ "$output" != "ja-JP" ]; then
+            echo "❌ Locale mismatch"
+            exit 1
+          else
+            echo "✅ Locale OK"
+          fi
