@@ -1,5 +1,12 @@
 :8080 {
-	file_server
-	templates
-	try_files {path} /
+	file_server browse
+
+	@md {
+		file {path}.md {path}index.md
+	}
+
+	handle @md {
+		templates
+		rewrite /_template.html
+	}
 }
