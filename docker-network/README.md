@@ -1,15 +1,16 @@
-やりたいこと: 複数の NIC がある環境でそれぞれ Docker コンテナに割り当てたい
+やりたいこと: 複数の NIC がある環境でそれぞれ Docker コンテナに割り当て
 
-メモ:
+既存のシステムブリッジ br0 を Docker ブリッジとして利用できない
+https://github.com/moby/libnetwork/issues/2310
+
+なので macvlan を使用:
 
 ```sh
-docker compose create
-sudo apt install -y bridge-utils
-sudo brctl addif br-nic-a <NIC名>
-docker compose start
-# brctl show
+docker compose up -d
 ```
 
-インターネットにつながることは確認できなかった。
-NIC を割り当てることはできた。
-あとは IP アドレスを振れば問題無いか。
+確認:
+
+```sh
+watch -n 1 ip -s link show enp1s0
+```

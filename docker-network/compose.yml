@@ -1,18 +1,17 @@
 services:
   a:
     image: alpine
-    network_mode: none
-    networks:
-      a:
-        ipv4_address: "10.10.1.10"
     command: ping 8.8.8.8
+    networks:
+      macnet:
+        ipv4_address: "${IP_ADDRESS}"
 networks:
-  a:
-    driver: bridge
-    internal: true
+  macnet:
+    driver: macvlan
     driver_opts:
-      com.docker.network.bridge.name: br-nic-a
+      parent: "${INTERFACE_NAME}"
     ipam:
+      driver: default
       config:
-        - subnet: "10.10.1.0/24"
-          gateway: "10.10.1.1"
+        - subnet: "${SUBNET_ADDRESS}"
+          gateway: "${GATEWAY_ADDRESS}"
