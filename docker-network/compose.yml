@@ -3,15 +3,13 @@ services:
     image: alpine
     command: ping 8.8.8.8
     networks:
-      macnet:
-        ipv4_address: "${IP_ADDRESS}"
+      - br0-net
 networks:
-  macnet:
-    driver: macvlan
+  br0-net:
+    driver: bridge
     driver_opts:
-      parent: "${INTERFACE_NAME}"
+      com.docker.network.bridge.name: br0
+      com.docker.network.bridge.inhibit_ipv4: "true"
     ipam:
-      driver: default
       config:
         - subnet: "${SUBNET_ADDRESS}"
-          gateway: "${GATEWAY_ADDRESS}"
