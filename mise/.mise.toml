@@ -1,0 +1,6 @@
+[tasks]
+build = ": build"
+
+[tasks.lint]
+description = "lint"
+run = ": lint"

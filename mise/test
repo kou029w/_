@@ -1,0 +1,5 @@
+#!/bin/sh
+#USAGE about "some help"
+#MISE tools={node="25"}
+
+exec node -p '`Hello, World! - ${process.version}`'

@@ -1,0 +1,5 @@
+#!/bin/sh
+#MISE description="test"
+#USAGE about "some help"
+
+echo "Hello, World!"

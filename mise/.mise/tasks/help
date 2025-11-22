@@ -1,0 +1,6 @@
+#!/bin/sh
+#MISE description="help"
+
+mise tasks ls
+echo
+exec mise generate task-docs
