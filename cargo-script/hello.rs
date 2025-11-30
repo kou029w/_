@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise x rust@nightly -- cargo -Zscript -q
+#!/usr/bin/env -S cargo -Zscript -q
 
 fn main() {
     println!("hello");
