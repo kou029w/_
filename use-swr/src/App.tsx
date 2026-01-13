@@ -4,7 +4,11 @@ import "./App.css";
 
 const API_BASE = "https://jsonplaceholder.typicode.com";
 
-const fetcher = (url) => fetch(url).then((r) => r.json());
+async function fetcher(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+  return res.json();
+}
 
 // ========================================
 // Providers: SWRのグローバル設定
@@ -32,7 +36,6 @@ function UserDetail({ userId, enableRefresh = false }) {
       style={{
         border: "1px solid #ccc",
         padding: "1rem",
-        margin: "0.5rem",
         minWidth: "200px",
       }}
     >
@@ -59,8 +62,8 @@ function User() {
   const [enableRefresh, setEnableRefresh] = useState(false);
 
   return (
-    <section style={{ marginBottom: "2rem" }}>
-      <h2>1. キャッシュ共有 + 定期更新</h2>
+    <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <h2 style={{}}>1. キャッシュ共有 + 定期更新</h2>
       <p style={{ fontSize: "0.9rem", color: "#666" }}>
         同じURLを参照する2つのコンポーネントがキャッシュを共有。
         <br />
@@ -72,15 +75,13 @@ function User() {
           display: "flex",
           gap: "1rem",
           alignItems: "center",
-          marginBottom: "1rem",
         }}
       >
-        <label>
+        <label style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           ユーザーID:
           <select
             value={userId}
             onChange={(e) => setUserId(Number(e.target.value))}
-            style={{ marginLeft: "0.5rem" }}
           >
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
               <option key={id} value={id}>
@@ -100,7 +101,9 @@ function User() {
         </label>
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+        <UserDetail userId={userId} enableRefresh={enableRefresh} />
+        <UserDetail userId={userId} enableRefresh={enableRefresh} />
         <UserDetail userId={userId} enableRefresh={enableRefresh} />
         <UserDetail userId={userId} enableRefresh={enableRefresh} />
         <UserDetail userId={userId} enableRefresh={enableRefresh} />
@@ -142,15 +145,15 @@ function UserSwitcher() {
   );
 
   return (
-    <section style={{ marginBottom: "2rem" }}>
-      <h2>2. キーの先行切り替え</h2>
+    <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <h2 style={{}}>2. キーの先行切り替え</h2>
       <p style={{ fontSize: "0.9rem", color: "#666" }}>
         IDを変更すると、IDは即座に切り替わるがデータは後から到着。
         <br />
         SWRのキー変更でリクエストが発生する様子を確認できる。
       </p>
 
-      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+      <div style={{ display: "flex", gap: "1rem" }}>
         {[1, 2, 3, 4, 5].map((id) => (
           <button
             key={id}
@@ -171,6 +174,9 @@ function UserSwitcher() {
 
       <div
         style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5rem",
           border: "1px solid #ccc",
           padding: "1rem",
           minHeight: "100px",
@@ -181,7 +187,6 @@ function UserSwitcher() {
             display: "flex",
             alignItems: "center",
             gap: "1rem",
-            marginBottom: "0.5rem",
           }}
         >
           <span
@@ -211,12 +216,10 @@ function UserSwitcher() {
           </div>
         ) : (
           <div>
-            <p style={{ margin: 0 }}>
+            <p style={{}}>
               <strong>{data?.name}</strong>
             </p>
-            <p style={{ margin: 0, fontSize: "0.9rem", color: "#666" }}>
-              {data?.email}
-            </p>
+            <p style={{ fontSize: "0.9rem", color: "#666" }}>{data?.email}</p>
           </div>
         )}
       </div>
@@ -225,45 +228,67 @@ function UserSwitcher() {
 }
 
 // ========================================
-// Profile: 条件付きフェッチ
+// Profile: 条件付きフェッチ + エラーハンドリング
 // - フォーム入力が完了するまでフェッチしない
 // - 空文字の場合はkeyがnullになりリクエストが発生しない
+// - mutate() を使ったエラー回復とダミーデータ作成
 // ========================================
 function Profile() {
   // 入力中のユーザーID
   const [userId, setUserId] = useState("");
   // 確定したユーザーID
   const [submittedUserId, setSubmittedUserId] = useState("");
+  // エラー時の自動リトライ（手動リトライするときは無効化する）
+  const [shouldRetryOnError, setShouldRetryOnError] = useState(false);
 
-  const { data, error, isLoading } = useSWR<{
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-  }>(submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null);
+  const { data, error, isLoading, mutate } = useSWR(
+    submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null,
+    { shouldRetryOnError },
+  );
+
+  // 存在しないユーザーをローカルで「作成」する（mutateでキャッシュに直接書き込む）
+  const createDummyUser = () => {
+    mutate(
+      {
+        id: Number(submittedUserId),
+        name: `ダミーユーザー ${submittedUserId}`,
+        email: `dummy${submittedUserId}@example.com`,
+        phone: "000-0000-0000",
+      },
+      { revalidate: false }, // サーバーに再リクエストしない
+    );
+  };
 
   return (
-    <section style={{ marginBottom: "2rem" }}>
-      <h2>3. 条件付きフェッチ</h2>
+    <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <h2 style={{}}>3. 条件付きフェッチ + エラーハンドリング</h2>
       <p style={{ fontSize: "0.9rem", color: "#666" }}>
         IDを入力して「検索」を押すまでリクエストは発生しない。
         <br />
-        （DevTools Networkで確認）
+        存在しないID（11以上）を入力するとエラーが発生 → mutateで回復可能。
       </p>
+      <label>
+        <input
+          type="checkbox"
+          checked={shouldRetryOnError}
+          onChange={(e) => setShouldRetryOnError(e.target.checked)}
+        />
+        エラー時に自動再試行
+      </label>
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
           setSubmittedUserId(userId.trim());
         }}
-        style={{ marginBottom: "1rem" }}
+        style={{ display: "flex", gap: "1rem" }}
       >
         <input
           type="text"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
-          placeholder="ユーザーID (1-10)"
-          style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+          placeholder="ユーザーID (1-10, 11以上はエラー)"
+          style={{ padding: "0.5rem", width: "220px" }}
         />
         <button type="submit" style={{ padding: "0.5rem 1rem" }}>
           検索
@@ -274,36 +299,107 @@ function Profile() {
         <p style={{ color: "#888" }}>IDを入力して検索してください</p>
       )}
 
-      {isLoading && <p>読み込み中...</p>}
-      {error && (
-        <p style={{ color: "red" }}>エラー: ユーザーが見つかりません</p>
+      {isLoading && <p style={{}}>読み込み中...</p>}
+
+      {error && !isLoading && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            background: "#fee",
+            border: "1px solid #f99",
+            borderRadius: "8px",
+            padding: "1rem",
+          }}
+        >
+          <p style={{ color: "#c00" }}>
+            <strong>ユーザー {submittedUserId} が見つかりません</strong>
+          </p>
+          <p style={{ color: "#666", fontSize: "0.9rem" }}>
+            このIDのユーザーはサーバーに存在しません。
+          </p>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <button
+              onClick={() => mutate()}
+              style={{
+                background: "#007bff",
+                color: "#fff",
+                border: "none",
+                padding: "0.5rem 1rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              再試行
+            </button>
+            <button
+              onClick={createDummyUser}
+              style={{
+                background: "#28a745",
+                color: "#fff",
+                border: "none",
+                padding: "0.5rem 1rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              ユーザーを作成
+            </button>
+          </div>
+          <p style={{ color: "#888", fontSize: "0.8rem" }}>
+            「ユーザーを作成」は mutate() でキャッシュに直接データを書き込みます
+          </p>
+        </div>
       )}
-      {data && (
+
+      {data && !error && (
         <div style={{ border: "1px solid #ccc", padding: "1rem" }}>
           <p>
             <strong>{data.name}</strong>
           </p>
           <p>{data.email}</p>
           <p>{data.phone}</p>
+          <button
+            onClick={() => mutate()}
+            style={{
+              background: "#007bff",
+              color: "#fff",
+              border: "none",
+              padding: "0.5rem 1rem",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            再試行
+          </button>
         </div>
       )}
     </section>
   );
 }
 
-// ========================================
-// App: メインコンポーネント
-// ========================================
 function App() {
   return (
     <Providers>
-      <div style={{ maxWidth: "800px", margin: "0 auto", padding: "2rem" }}>
-        <h1>SWR 学習サンプル</h1>
-        <p style={{ marginBottom: "2rem", color: "#666" }}>
-          各セクションでSWRの機能を体験できます。
-          <br />
-          Chrome DevTools &gt; Network で挙動を確認してください。
-        </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          maxWidth: "800px",
+          margin: "0 auto",
+          padding: "2rem",
+        }}
+      >
+        <header>
+          <h1>SWR 学習サンプル</h1>
+          <p style={{ color: "#666" }}>
+            各セクションでSWRの機能を体験できます。
+            <br />
+            Chrome DevTools &gt; Network で挙動を確認できます。
+          </p>
+        </header>
 
         <User />
         <UserSwitcher />
