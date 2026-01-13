@@ -1,20 +1,16 @@
-import { type ReactNode, useState } from "react";
+import { useState } from "react";
 import useSWR, { SWRConfig } from "swr";
 import "./App.css";
 
 const API_BASE = "https://jsonplaceholder.typicode.com";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 // ========================================
 // Providers: SWRのグローバル設定
 // ========================================
-function Providers({ children }: { children: ReactNode }) {
-  return (
-    <SWRConfig value={{ fetcher, dedupingInterval: 2000 }}>
-      {children}
-    </SWRConfig>
-  );
+function Providers({ children }) {
+  return <SWRConfig value={{ fetcher }}>{children}</SWRConfig>;
 }
 
 // ========================================
@@ -22,13 +18,7 @@ function Providers({ children }: { children: ReactNode }) {
 // - 同じuserIdで複数回使用 → キャッシュ共有を確認
 // - refreshInterval で定期更新を確認
 // ========================================
-function UserDetail({
-  userId,
-  enableRefresh = false,
-}: {
-  userId: number;
-  enableRefresh?: boolean;
-}) {
+function UserDetail({ userId, enableRefresh = false }) {
   const { data, error, isLoading } = useSWR<{
     id: number;
     name: string;
@@ -61,7 +51,7 @@ function UserDetail({
 
 // ========================================
 // User: キャッシュ共有と定期更新の確認
-// - 2つのUserDetailを並べて、2回目がキャッシュ命中で即表示されることを確認
+// - 2つ以上のUserDetailを並べて、2回目以降キャッシュ・ヒットで即表示されることを確認
 // - URLを変更して結果の差を確認
 // ========================================
 function User() {
@@ -74,7 +64,7 @@ function User() {
       <p style={{ fontSize: "0.9rem", color: "#666" }}>
         同じURLを参照する2つのコンポーネントがキャッシュを共有。
         <br />
-        2回目は即座に表示される（DevTools Networkで1回のみリクエスト確認）。
+        2回目以降は即座に表示される（DevTools Networkで1回のみリクエスト確認）。
       </p>
 
       <div
@@ -205,9 +195,7 @@ function UserSwitcher() {
           >
             ID: {userId}
           </span>
-          <span style={{ fontSize: "0.8rem", color: "#888" }}>
-            ← 即座に変わる
-          </span>
+          <span style={{ color: "#888" }}>← 即座に変わる</span>
         </div>
 
         {isLoading ? (
@@ -242,22 +230,17 @@ function UserSwitcher() {
 // - 空文字の場合はkeyがnullになりリクエストが発生しない
 // ========================================
 function Profile() {
-  const [inputId, setInputId] = useState("");
-  const [submittedId, setSubmittedId] = useState<string | null>(null);
+  // 入力中のユーザーID
+  const [userId, setUserId] = useState("");
+  // 確定したユーザーID
+  const [submittedUserId, setSubmittedUserId] = useState("");
 
   const { data, error, isLoading } = useSWR<{
     id: number;
     name: string;
     email: string;
     phone: string;
-  }>(submittedId ? `${API_BASE}/users/${submittedId}` : null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputId.trim()) {
-      setSubmittedId(inputId.trim());
-    }
-  };
+  }>(submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null);
 
   return (
     <section style={{ marginBottom: "2rem" }}>
@@ -268,11 +251,17 @@ function Profile() {
         （DevTools Networkで確認）
       </p>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: "1rem" }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setSubmittedUserId(userId.trim());
+        }}
+        style={{ marginBottom: "1rem" }}
+      >
         <input
           type="text"
-          value={inputId}
-          onChange={(e) => setInputId(e.target.value)}
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
           placeholder="ユーザーID (1-10)"
           style={{ padding: "0.5rem", marginRight: "0.5rem" }}
         />
@@ -281,7 +270,7 @@ function Profile() {
         </button>
       </form>
 
-      {submittedId === null && (
+      {submittedUserId === "" && (
         <p style={{ color: "#888" }}>IDを入力して検索してください</p>
       )}
 
