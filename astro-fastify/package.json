@@ -12,7 +12,7 @@
   "devDependencies": {
     "@astrojs/node": "^8.2.5",
     "@fastify/http-proxy": "^9.5.0",
-    "@fastify/middie": "^8.3.0",
+    "@fastify/middie": "^9.1.0",
     "@fastify/static": "^7.0.1",
     "astro": "^4.5.9",
     "fastify": "^4.26.2",
