@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "@astrojs/node": "^8.2.5",
-    "@fastify/http-proxy": "^9.5.0",
-    "@fastify/middie": "^8.3.0",
+    "@fastify/http-proxy": "^11.4.4",
+    "@fastify/middie": "^9.3.2",
     "@fastify/static": "^7.0.1",
-    "astro": "^4.5.9",
-    "fastify": "^4.26.2",
+    "astro": "^6.1.6",
+    "fastify": "^5.8.5",
     "fastify-cli": "^6.1.1"
   }
 }
