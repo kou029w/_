@@ -6,7 +6,7 @@ test("first", async ({ page }) => {
 
   // playwright test --browser=chromium : pass
   // playwright test --browser=firefox  : pass
-  // playwright test --browser=webkit   : fail (return `1\n`)
+  // playwright test --browser=webkit   : pass
   expect(await page.innerText("first-test")).toBe(`1`);
 });
 
