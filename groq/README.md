@@ -1,3 +1,0 @@
-```
-$ uv run main.py
-```

@@ -1,9 +1,0 @@
-table:
-  name: users
-  schema: public
-insert_permissions:
-  - role: anonymous
-    permission:
-      check: {}
-      columns:
-        - name
