@@ -12,9 +12,6 @@ End-to-end testing setup using Playwright framework.
 
 ```bash
 pnpm install
-# Ubuntu 26.04 LTS
-PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 pnpm exec playwright install
-# Others
 pnpm exec playwright install
 pnpm test
 ```
