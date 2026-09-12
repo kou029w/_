@@ -60,30 +60,22 @@ YubiKeyのOpenPGPアプリケーションには、署名、暗号化、認証の
 ネットワークを切断し、Tailsの永続領域を使わない状態で起動します。
 新しいYubiKey以外のYubiKeyは取り外します。
 
-GnuPGとYubiKey Managerのバージョンを確認します。
+GnuPGのバージョンとOpenPGPカードの情報を確認します。
 
 ```sh
 gpg --version
-ykman --version
-ykman info
 gpg --card-status
 ```
 
-新しい2本について、ファームウェアが5.7.xで、OpenPGPアプリケーションが有効であることを確認します。
+新しい2本について、`gpg --card-status` の `Version` が5.7.xで、`Application type` がOpenPGPであることを確認します。
 
-新しいYubiKeyを初期状態に戻す場合は、対象を取り違えないように1本ずつ実行します。
-
-```sh
-ykman openpgp reset
-```
-
-この操作はOpenPGPアプリケーションだけを消去します。
-初期PINをそのまま使わず、ユーザーPINと管理者PINをそれぞれのYubiKeyで変更します。
+カードのPINを変更するには、次のコマンドを実行します。
 
 ```sh
-ykman openpgp access change-pin
-ykman openpgp access change-admin-pin
+gpg --change-pin
 ```
+
+表示されたメニューで、ユーザーPINの変更には `1`、管理者PINの変更には `3` を選びます。
 
 通常のユーザーPINの初期値は `123456`、管理者PINの初期値は `12345678` です。
 PINの値はシェル履歴、ファイル、写真には残しません。
@@ -411,13 +403,15 @@ gpg --auto-key-locate clear,wkd --locate-keys nebel@fogtype.com
 
 旧鍵の有効期限が過ぎた後は、旧YubiKeyを1本ずつ論理消去します。
 
-```sh
-ykman openpgp reset
+```text
+gpg --card-edit
+gpg/card> admin
+gpg/card> factory-reset
 gpg --card-status
 ```
 
-OpenPGPスロットが空であることを確認し、そのYubiKeyを物理的に破棄します。
-リセットするとPINは初期値へ戻るため、リセット後のYubiKeyを保管品として再利用しません。
+`factory-reset` の完了後、`gpg --card-status` でOpenPGPスロットが空であることを確認します。
+確認後、そのYubiKeyを物理的に破棄します。
 
 ## 一時環境から秘密鍵を消去する
 
@@ -468,7 +462,6 @@ rm -f -- old-public-key.asc new-public-key.asc new-public-key.wkd \
 - [GnuPG Smart Card Tool](https://gnupg.org/documentation/manuals/gnupg/Smart-Card-Tool.html)
 - [GnuPG Web Key Service](https://gnupg.org/documentation/manuals/gnupg/Web-Key-Service.html)
 - [Yubico OpenPGP Specifics](https://docs.yubico.com/hardware/yubikey/yk-tech-manual/yk5-apps-openpgp.html)
-- [YubiKey Manager OpenPGP Commands](https://docs.yubico.com/software/yubikey/tools/ykman/OpenPGP_Commands.html)
 - [keys.openpgp.org API](https://keys.openpgp.org/about/api/)
 - [sunknudsen/privacy-guides](https://github.com/sunknudsen/privacy-guides/blob/master/how-to-generate-and-air-gap-pgp-private-keys-using-gnupg-tails-and-yubikey/README.md)
 - [drduh/YubiKey-Guide](https://github.com/drduh/YubiKey-Guide)
