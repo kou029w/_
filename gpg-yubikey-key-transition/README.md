@@ -69,10 +69,14 @@ gpg --card-status
 
 新しい2本について、`gpg --card-status` の `Version` が5.7.xで、`Application type` がOpenPGPであることを確認します。
 
-カードのPINを変更するには、次のコマンドを実行します。
+カードのPINを変更する前に、KDFを有効にします。
+各YubiKeyで次の操作を実行します。
 
-```sh
-gpg --change-pin
+```
+gpg --edit-card
+gpg/card> admin
+gpg/card> kdf-setup
+gpg/card> passwd
 ```
 
 表示されたメニューで、ユーザーPINの変更には `1`、管理者PINの変更には `3` を選びます。
