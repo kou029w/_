@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "emoji-support/**"
+      - "!emoji-support/**/*.md"
+      - "!emoji-support/reports/**"
       - ".github/workflows/emoji-support.yml"
 
 jobs:
