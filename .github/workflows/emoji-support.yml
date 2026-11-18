@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        browser: [chromium, firefox, webkit]
+        browser: [chromium, chrome, firefox, webkit]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -26,7 +26,12 @@ jobs:
         with:
           node-version: 24
       - run: npm install
-      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - if: matrix.browser != 'chrome'
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+      # Google Chrome はランナーにプリインストールされたものを使う。
+      # Linux だけは他ブラウザーと条件を揃えるため依存パッケージ (フォント含む) を入れる。
+      - if: matrix.browser == 'chrome' && runner.os == 'Linux'
+        run: npx playwright install-deps chromium
       - run: npm run fetch
       - name: Linux のフォント構成を記録
         if: runner.os == 'Linux'

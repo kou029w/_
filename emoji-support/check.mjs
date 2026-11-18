@@ -38,8 +38,11 @@ for (const line of text.split("\n")) {
   }
 }
 
-const browserType = { chromium, firefox, webkit }[browserName];
-const browser = await browserType.launch();
+// chrome は環境にインストール済みの Google Chrome (stable) を使う
+const browserType = { chromium, chrome: chromium, firefox, webkit }[browserName];
+const browser = await browserType.launch(
+  browserName === "chrome" ? { channel: "chrome" } : {},
+);
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 await page.setContent(
   `<!doctype html><meta charset="utf-8"><title>emoji</title><body></body>`,
