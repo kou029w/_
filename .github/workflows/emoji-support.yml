@@ -1,0 +1,62 @@
+name: emoji-support
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "emoji-support/**"
+      - ".github/workflows/emoji-support.yml"
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        browser: [chromium, firefox, webkit]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: emoji-support
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm install
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run fetch
+      - name: Linux のフォント構成を記録
+        if: runner.os == 'Linux'
+        run: |
+          fc-match emoji || true
+          dpkg -l | grep -i -E 'fonts-(noto|emoji)' || true
+      - run: node check.mjs ${{ matrix.browser }} emoji-test.txt out
+        env:
+          PLATFORM_LABEL: ${{ matrix.os }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: emoji-${{ matrix.os }}-${{ matrix.browser }}
+          path: emoji-support/out
+
+  report:
+    needs: check
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: emoji-*
+          path: emoji-support/out
+      - run: node emoji-support/report.mjs emoji-support/out > report.md
+      - run: cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.md

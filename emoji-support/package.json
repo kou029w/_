@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "curl -fsSL https://unicode.org/Public/emoji/latest/emoji-test.txt -o emoji-test.txt",
+    "check": "node check.mjs",
+    "report": "node report.mjs out"
+  },
+  "dependencies": {
+    "playwright": "1.65.1"
+  }
+}
