@@ -1,19 +1,17 @@
 # VOICEVOX
 
-Text-to-speech synthesis setup using VOICEVOX engine with Docker Compose.
+VOICEVOX Engine を Docker Compose で動かし、Claude Code の回答をずんだもんの声で読み上げる設定です。
 
-## Files
+## ファイル
 
-- `compose.yml` - Docker Compose configuration
-- `CLAUDE.md` - Claude AI integration guidelines
-- `GEMINI.md` - Gemini AI integration guidelines
+- `compose.yml` - VOICEVOX Engine（`127.0.0.1:50021`）
+- `AGENTS.md` - キャラクター設定
+- `.claude/settings.json` / `.claude/hooks/speak.sh` - Stop フックで回答を読み上げる。`claude -p --model haiku` で読み上げ用の短い文に直してから再生する
 
-## Usage
+## 使い方
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
-## Character
-
-Uses "ずんだもん" character for voice synthesis according to guidelines.
+必要なコマンド: `jq`、`curl`、`aplay`（Linux）、`claude`
